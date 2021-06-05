@@ -1,0 +1,338 @@
+/*----------------------------------------------------
+@File: Custom Styles
+@Author: Miguel A. Rangel - MG IDEAS
+@URL: https://bimbovenezuela.com/bimbotinto
+
+/*====================================================*/
+@font-face {
+  font-family: "GothamBlack";
+  src: url("../fonts/Gotham-Black.otf") format("otf"),
+       url("../fonts/Gotham-Black.ttf") format("truetype"),
+       url("../fonts/Gotham-Black.eot") format("eot"),
+       url("../fonts/Gotham-Black.svg") format("svg"),
+       url("../fonts/Gotham-Black.woff") format("woff");
+}
+
+@font-face {
+  font-family: "GothamMedium";
+  src: url("../fonts/Gotham-Medium.otf") format("otf"),
+       url("../fonts/Gotham-Medium.ttf") format("truetype"),
+       url("../fonts/Gotham-Medium.eot") format("eot"),
+       url("../fonts/Gotham-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "GothamBook";
+  src: url("../fonts/Gotham-Book.otf") format("otf"),
+       url("../fonts/Gotham-Book.ttf") format("truetype"),
+       url("../fonts/Gotham-Book.eot") format("eot"),
+       url("../fonts/Gotham-Book.svg") format("svg"),
+       url("../fonts/Gotham-Book.woff") format("woff");
+}
+
+@font-face{
+  font-family:'Glyphicons Halflings';
+  src:url(../fonts/glyphicons-halflings-regular.eot);
+  src:url(../fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'),
+  url(../fonts/glyphicons-halflings-regular.woff2) format('woff2'),
+  url(../fonts/glyphicons-halflings-regular.woff) format('woff'),
+  url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'),
+  url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
+}
+
+/*Scroll Bar*/
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {         /* Color barra normal */
+  background: #be1616;
+  border: 0px solid #be1616;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {   /* Color barra clic hover  */
+  background: #9d0b0b;
+}
+::-webkit-scrollbar-thumb:active {  /* Color barra clic sostenido  */
+  background: #9d0b0b;
+}
+::-webkit-scrollbar-track {         /* color de fondo carril normal */
+  background: #f3cfcf;
+  border: 0px solid #f3cfcf;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-track:hover {   /* color de fondo carril hover */
+  background: #f3cfcf;
+}
+::-webkit-scrollbar-track:active {  /* color de fondo carril clic sostenido */
+  background: #f3cfcf;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:400;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+body, p{
+  color: #333;
+}
+b, strong {
+  font-weight: 900;
+}
+
+.hidden{
+	display: none !important;
+}
+
+.header_area.navbar_fixed .menu_five .menu_toggle .hamburger-cross span, .header_area.navbar_fixed .menu_five .menu_toggle .hamburger span {
+    background: #2762b7;
+}
+
+.header_desc{
+  font: 400 16px/28px "GothamMedium", sans-serif;
+}
+
+.menu_custfive{
+	color: #2762b7;
+	border-color: #2762b7;
+}
+
+#sopa_history{
+	background: url(../img/backgrounds/sopa_history_background.png) no-repeat center center !important;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.menu_five .btn_get:hover {
+    color: #2762b7;
+}
+
+/* Sign Up Page */
+/* Header Menu button */
+.menu_four .btn_get{
+	color: #fff;
+}
+
+.header_area.navbar_fixed .menu_four .btn_get_radious {
+    border-color: #2762b7;
+    color: #2762b7;
+}
+
+.menu_four .btn_get_radious:hover{
+	background:#fff;
+  	color: #2762b7;;
+}
+
+
+/* Login form button */
+.login-form .btn_three, .sign-in-form .btn_three {
+	border-color: #2762b7; 
+	margin-top: 35px;
+  	background: #2762b7;
+  	color: #fff;
+}
+
+.login-form .btn_three:hover, .sign-in-form .btn_three:hover {
+  	background: #2762b7;
+  	color: #fff;
+}
+
+.login-form .extra .checkbox input[type="checkbox"]:before {
+    border: 1px solid #2762b7;
+}
+
+.login-form .extra .checkbox input[type="checkbox"]:checked:after {
+    content: "";
+    display: block;
+    width: 7px;
+    height: 12px;
+    border: solid #2762b7;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 0px;
+    left: 5px;
+}
+
+.login-form .extra .checkbox input[type="checkbox"]:before {
+  width: 15px;
+  height: 15px;
+}
+
+.tx_sopa_history p{
+  text-align: justify;
+}
+
+.has-error .form-control {
+    border-color: #d6716f !important;
+    -webkit-box-shadow: inset 0 6px 6px rgb(214 113 111 / 8%) !important;
+    box-shadow: inset 0 6px 6px rgb(214 113 111 / 8%) !important;
+}
+
+.has-error .form-control-feedback {
+    color: #d6716f !important;
+}
+
+.has-feedback label~.form-control-feedback {
+    top: 48px !important;
+}
+
+.has-error .help-block {
+    color: #d6716f !important;
+    font-size: 14px !important;
+    font-family: "GothamBook";
+}
+
+/* Mensajes de error */
+.frm_error{
+    margin-top: 25px;
+    padding: 12px 8px;
+    border: 1px solid #d6716f;
+    color: #d6716f !important;
+    border-radius: 4px;
+    background-color: rgba(214,113,111,0.05);
+}
+
+/* Mensajes de éxito */
+.frm_success{
+    margin-top: 20px;
+    padding: 12px 8px;
+    border: 1px solid #6cb727;
+    color: #6cb727 !important;
+    border-radius: 4px;
+    background-color: rgba(108,183,39,0.05);
+}
+
+/* Alineación titular */
+
+.s_promo_info .promo_item {
+  position: static !important;
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.job_listing .listing_tab .list_item {
+  padding: 0;
+}
+
+.job_listing .listing_tab .list_item .joblisting_text {
+  padding-left: 8px;
+}
+
+.job_listing .listing_tab .list_item figure {
+  margin-right: 8px;
+}
+
+#tab_filter .item {
+  width: 100%;
+  position: static !important;
+}
+
+.job_listing .listing_tab {
+  margin-top: 20px;
+}
+
+.job_listing {
+    margin-top: 10px;
+}
+
+
+
+.btn_siguiente_paso{
+    padding: 20px 0;
+    display: none;
+}
+
+/* botones */
+.jbtn{
+    color: #FFF;
+    border-radius: 14px;
+    background: #fff;
+    z-index: 1;
+    min-width: 170px;
+    padding: 8px 20px;
+    text-align: center;
+    border-color: #9d0b0b ;
+    background: #be1616;
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+.jbtn:hover{
+    color: #9d0b0b;
+    border: 1px solid #9d0b0b;
+    background: #fff; 
+}
+
+.jbtn_l{
+    color: #ccc;
+    border-radius: 14px;
+    background: #f2f2f2;
+    z-index: 1;
+    min-width: 170px;
+    padding: 8px 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+.jbtn_l:hover{
+    color: #ccc;
+    border: 1px solid #ccc;;
+    background: #f3f3f3;
+    cursor:not-allowed; 
+}
+
+/* Paso 2 */
+.nombre_jugador{
+  float: left; 
+  line-height: 0.1em;
+  font-size: 16px;
+  margin-left: 50px;
+}
+
+
+.jugador_alineado{ 
+  color: #be1616;
+  padding: 15px 10px; 
+  border: 1px solid #be1616; 
+  border-radius: 10px; 
+  margin: 5px 0; 
+  position: relative;
+  background: #f3f3f3;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.jugador_alineado:hover{ background: #be1616; color: #fff; transform: scale(1.1); }
+
+.sel_pgol{
+  background: #be1616; color: #fff; transform: scale(1.1);
+}
+
+/* Resumen */
+.jugador_once{ 
+  color: #000;
+  max-width: 80%;
+  font-weight: bolder;
+  padding: 12px 8px; 
+  border: 1px solid #be1616; 
+  border-radius: 10px; 
+  margin: 5px 0; 
+  position: relative;
+  background: #f3f3f3;
+}
+
+/* Bimbo Tinto */
