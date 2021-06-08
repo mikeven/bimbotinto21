@@ -30,6 +30,19 @@
        url("../fonts/Gotham-Book.woff") format("woff");
 }
 
+/**/
+
+@font-face {
+  font-family: "Lemonjuice";
+  src: url("../fonts/Lemon-Juice.otf") format("otf"),
+       url("../fonts/Lemon-Juice.ttf") format("truetype"),
+       url("../fonts/Lemon-Juice.eot") format("eot"),
+       url("../fonts/Lemon-Juice.svg") format("svg"),
+       url("../fonts/Lemon-Juice.woff") format("woff");
+}
+
+/**/
+
 @font-face{
   font-family:'Glyphicons Halflings';
   src:url(../fonts/glyphicons-halflings-regular.eot);
@@ -79,9 +92,29 @@
 
 body, p{
   color: #333;
+  font-family: 'Poppins';
 }
 b, strong {
   font-weight: 900;
+}
+
+span.btpts {
+    background: #8e0313;
+    border-radius: 15px;
+    color: #fff;
+    font-weight: bolder;
+}
+
+.tit1{
+  color: #707070;
+  font-size: 84px;
+  font-family: 'Lemonjuice';
+}
+
+.tit4{
+  color: #000;
+  font-size: 42px;
+  font-family: 'Lemonjuice';
 }
 
 .hidden{
@@ -287,11 +320,67 @@ b, strong {
     transition: all 0.3s linear;
 }
 
-.jbtn_l:hover{
+.btn_l:hover{
     color: #ccc;
     border: 1px solid #ccc;;
     background: #f3f3f3;
     cursor:not-allowed; 
+}
+
+.azbtn{
+    color: #FFF;
+    border-radius: 14px;
+    z-index: 1;
+    min-width: 170px;
+    padding: 8px 20px;
+    text-align: center;
+    border-color: #0061aa;
+    background: #0061aa;
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+.azbtn:hover{
+    color: #0061aa;
+    border: 1px solid #0061aa;
+    background: #fff; 
+}
+
+.enc_jornada{
+    -webkit-border-top-left-radius: 25px;
+    -webkit-border-top-right-radius: 25px;
+    -moz-border-radius-topleft: 25px;
+    -moz-border-radius-topright: 25px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    background: #9d0b0b;
+} 
+.data_jornada{
+    -webkit-border-bottom-right-radius: 25px;
+    -webkit-border-bottom-left-radius: 25px;
+    -moz-border-radius-bottomright: 25px;
+    -moz-border-radius-bottomleft: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    background: #be1616;
+}
+
+.fecha_jornada, .jvs{
+    color: #FFF;
+}
+
+/* Paso 1 */
+#fondo_actividad{
+  background-image: url( ../img/bimbotinto.png );
+}
+
+.faq_tab {
+  border: 1px solid #f4f4f9;
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-box-shadow: 0px 2px 4px 0px rgb(12 0 46 / 4%);
+  box-shadow: 0px 2px 4px 0px rgb(12 0 46 / 4%);
+  padding: 20px;
 }
 
 /* Paso 2 */
@@ -323,16 +412,16 @@ b, strong {
 }
 
 /* Resumen */
-.jugador_once{ 
-  color: #000;
-  max-width: 80%;
-  font-weight: bolder;
-  padding: 12px 8px; 
-  border: 1px solid #be1616; 
-  border-radius: 10px; 
-  margin: 5px 0; 
-  position: relative;
-  background: #f3f3f3;
+.jugador_once {
+    color: #000;
+    max-width: 75%;
+    font-weight: bolder;
+    padding: 14px 8px;
+    border: 1px solid #be1616;
+    border-radius: 10px;
+    margin: 12px 0;
+    position: relative;
+    background: #f3f3f3;
 }
 
 /* Bimbo Tinto */

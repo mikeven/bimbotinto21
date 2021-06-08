@@ -118,13 +118,13 @@ jQuery.fn.exists = function(){ return ($(this).length > 0); }
 $( document ).ready(function() {	
     
 	$("#enl_frmlogin").on( "click", function(){
-        $("#form_registro").fadeOut();
-        $("#form_ingreso").fadeIn();
+        $(".form_registro").fadeOut();
+        $(".form_ingreso").fadeIn();
     });
 
     $("#enl_frmregistro").on( "click", function(){
-        $("#form_ingreso").fadeOut();
-        $("#form_registro").fadeIn();
+        $(".form_ingreso").fadeOut();
+        $(".form_registro").fadeIn();
     });
 
     $("#btn_login_dd").on( "click", function(){

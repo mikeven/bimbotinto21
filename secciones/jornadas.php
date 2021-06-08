@@ -1,15 +1,27 @@
 <?php 
     foreach ( $jornadas as $j ) { 
         
-        $jornada_actual = obtenerJornadaActiva( $dbh );
-        
-        $idj        = $jornada_actual["id"];
-        $jlink      = "alineacion.php?j=$idj";
-        $icon       = "ti-unlock";
-        $btn_class  = "jbtn";
+        $predicc_iniciada = prediccionJornadaActualIniciada( $dbh, $j["idj"], $idp );
+
+        $icon           = "ti-unlock";      // icono candado abierto
+        $btn_class      = "jbtn";           // botón rojo
+
+        if( $predicc_iniciada ){
+            $jlink      = "jornada.php?j=$j[idj]";
+            $txboton    = "Ver mi predicción";
+        }else{
+            $txboton    = "Jugar jornada";
+            $jlink      = "alineacion.php";
+        }
         
         if( $j["cerrado"] == 1 ){
-            $btn_class = "jbtn_l"; $jlink = "#!"; $icon = "ti-lock";
+            $icon           = "ti-lock";    // icono candado cerrado
+
+            if( $predicc_iniciada ){
+                $txboton    = "Ver mi predicción";
+            }else{
+                $btn_class  = "jbtn_l";
+            }
         }
 ?>
 
@@ -36,7 +48,7 @@
             <div class="col-12" align="center">
                 <span class="jvs">
                     <a href="<?php echo $jlink ?>" class="cus_mb-10 <?php echo $btn_class ?>">
-                        <i class="<?php echo $icon ?>"></i> Jugar jornada
+                        <i class="<?php echo $icon ?>"></i> <?php echo $txboton ?>
                     </a>
                 </span>
                 <div align="center" class="candado">

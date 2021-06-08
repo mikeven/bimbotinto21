@@ -55,17 +55,18 @@
     
     <div class="body_wrapper">
         
-        <section class="software_promo_area bg_color sec_pad" style="min-height: 100vh">
+        <section id="fondo_actividad" class="software_promo_area bg_color sec_pad" style="min-height: 100vh">
             <div class="container">
                 <div class="row">
                     
                     <div class="col-lg-5" style="padding-left: 2%">
-                        <div class="faq_tab">
-                            <h4 class="f_p t_color3 f_600 f_size_22 mb_40">Primer gol</h4>
+                        <div class="faq_tab" align="center">
+                            <h4 class="tit4 text-center">Primer gol</h4>
+                            <img src="img/gol.png" width="90%" align="center">
                             <p> De tus 11 jugadores, ¿quién crees que anote el primer gol?</p>
-                            
+                            <p> <span class="btpts">+60 puntos</span> </p>
                             <div align="center" class="btn_siguiente_paso">
-                                <a href="#!" class="app_btn btn_hover cus_mb-10 btn_siguiente paso_primer_gol" data-paso="2">
+                                <a href="#!" class="azbtn btn_hover btn_hover cus_mb-10 btn_siguiente paso_primer_gol" data-paso="2">
                                     Siguiente <i class="ti-arrow-right"></i>
                                 </a>
                             </div>
@@ -77,11 +78,6 @@
                         
                         <?php include ( "secciones/lista_jugadores.php" )?>
                         
-                        <div align="center" class="btn_siguiente_paso" style="margin-top: 100px">
-                            <a href="#!" class="app_btn btn_hover cus_mb-10 btn_siguiente paso_primer_gol" data-paso="2">
-                                Siguiente <i class="ti-arrow-right"></i>
-                            </a>
-                        </div>
                     </div>
                     
                 </div>

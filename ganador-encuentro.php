@@ -66,28 +66,26 @@
     
     <div class="body_wrapper">
         
-        <section class="software_promo_area bg_color sec_pad" style="min-height: 100vh">
+        <section id="fondo_actividad" class="software_promo_area bg_color sec_pad" style="min-height: 100vh">
             <div class="container">
                 <div class="row">
                     
                     <div class="col-lg-5" style="padding-left: 2%">
                         <div class="faq_tab">
-                            <h4 class="f_p t_color3 f_600 f_size_22 mb_40">Ganador del partido</h4>
-                            <p>¿Quién ganará el encuentro?</p>
+                            <h4 class="tit4 text-center">Ganador del partido</h4>
+                            <img src="img/bimbo_ganador.png" width="100%" align="center">
+                            <hr>
+                            <p align="center">¿Quién ganará el encuentro?</p>
+                            <p align="center">La respusta correcta obtiene</p>
+                            <p align="center"> <span class="btpts">+60 puntos</span> </p>
                             
-                            <div align="center" class="btn_siguiente_paso hidden">
-                                <a href="#!" class="app_btn btn_hover cus_mb-10 btn_siguiente paso_ganador" data-paso="3">
-                                    Finalizar <i class="ti-arrow-right"></i>
-                                </a>
-                            </div>
                         </div>
-
                     </div>
 
                     <div class="col-lg-5 offset-lg-1" style="padding-right: 2%">
                         <?php include ( "secciones/equipos_jornada.php" )?>
                         <div align="center" class="btn_siguiente_paso">
-                            <a href="#!" class="app_btn btn_hover cus_mb-10 btn_siguiente paso_ganador" data-paso="3">
+                            <a href="#!" class="azbtn btn_hover cus_mb-10 btn_siguiente paso_ganador" data-paso="3">
                                 Finalizar <i class="ti-arrow-right"></i>
                             </a>
                         </div>

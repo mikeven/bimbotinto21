@@ -29,22 +29,14 @@
 		return mysqli_fetch_array( mysqli_query ( $dbh, $q ) );
 	}
 	/* ----------------------------------------------------------------------------------- */
-	function obtenerPrediccionJornadaUsuario( $dbh, $idu, $idj ){
+	function obtenerPrediccionJornadaUsuario( $dbh, $idp, $idj ){
 		// Devuelve los datos de los partidos registrados de la Vinotinto
 		$q = "select p.id, p.jugador0, p.jugador1, p.jugador2, p.jugador3, p.jugador4, p.jugador5, 
-				p.jugador6, p.jugador7, p.jugador8, p.jugador9, p.jugador10, p.primergol, e.nombre as ganador, e.bandera,  
-				p.puntos_alineacion, p.puntos_primergol, p.puntos_ganador from prediccion p left join equipo e 
-				on p.ganador = e.id where p.jornada = $idj and p.idParticipante = $idu";
-		
-		return mysqli_fetch_array( mysqli_query ( $dbh, $q ) );
-	}
-	/* ----------------------------------------------------------------------------------- */
-	function obtenerPrediccionInicialJornadaUsuario( $dbh,  $idp, $idj ){
-		// Devuelve los datos de los partidos registrados de la Vinotinto
-		$q = "select p.id, p.jugador0, p.jugador1, p.jugador2, p.jugador3, p.jugador4, p.jugador5, 
-				p.jugador6, p.jugador7, p.jugador8, p.jugador9, p.jugador10 from prediccion p
+				p.jugador6, p.jugador7, p.jugador8, p.jugador9, p.jugador10, p.primergol, p.ganador as idganador, 
+				e.nombre as ganador, e.bandera, p.puntos_alineacion, p.puntos_primergol, p.puntos_ganador 
+				from prediccion p left join equipo e on p.ganador = e.id 
 				where p.jornada = $idj and p.idParticipante = $idp";
-		
+
 		return mysqli_fetch_array( mysqli_query ( $dbh, $q ) );
 	}
 	/* ----------------------------------------------------------------------------------- */
@@ -91,7 +83,30 @@
 		return obtenerPrediccionJornadaUsuario( $dbh, $idu, $jractiva["id"] );
 	}
 	/* ----------------------------------------------------------------------------------- */
-	
+	function prediccionJornadaActualIniciada( $dbh, $idj, $idp ){
+		// Devuelve verdadero si la predicción de una jornada de participante está iniciada
+		$iniciada 	= false;
+		$prediccion = obtenerPrediccionJornadaUsuario( $dbh, $idp, $idj );
+		
+		for ( $i = 0; $i < 11; $i++ ) { 
+			if( $prediccion["jugador$i"] != "" ) $iniciada = true;
+		}
+		if( ( $prediccion["primergol"] != "" ) || ( $prediccion["idganador"] != NULL ) ) 
+			$iniciada = true;
+
+		return $iniciada;
+	}
+	/* ----------------------------------------------------------------------------------- */
+	function obtenerPuntuaciones( $dbh ){
+		// Devuelve los registros de participantes y sus puntuaciones
+		$q = "select concat_ws(' ', p.nombre, p.apellido) as participante,
+				sum( pre.puntos_alineacion ) as total_p1, sum( pre.puntos_primergol ) as total_p2, 
+				sum( pre.puntos_primergol ) as total_p3, 
+				sum( pre.puntos_alineacion + pre.puntos_primergol + pre.puntos_ganador ) as total 
+				from prediccion pre, participante p where pre.idparticipante=p.id order by total DESC";
+		
+		return obtenerListaRegistros( mysqli_query( $dbh, $q ) );
+	}
 	/* ----------------------------------------------------------------------------------- */
 	/* Solicitudes asíncronas al servidor para procesar información de usuarios */
 	/* ----------------------------------------------------------------------------------- */

@@ -12,11 +12,14 @@
 
     checkSession( "" );
 
-    if( isset( $_GET['j'] ) ){
+    if( isset( $_GET['j'] ) )
         $idj            = $_GET['j'];
-        $jornada        = obtenerJornadaPorId( $dbh, $idj );
-        $prediccion     = obtenerPrediccionJornada( $dbh );
+    else{
+        $jornada_actual     = obtenerJornadaActiva( $dbh );
+        $idj                = $jornada_actual["id"];
     }
+    $jornada        = obtenerJornadaPorId( $dbh, $idj );
+    $prediccion     = obtenerPrediccionJornada( $dbh );
         
 ?>
 <!doctype html>
@@ -55,10 +58,18 @@
             height: auto;
         }
         .imgjugador {
-            width: 30px;
+            width: 36px;
             position: absolute;
             left: 15px;
             bottom: 0px;
+            max-width: 75px;
+        }
+        .imgbandera {
+            width: 42px;
+            position: absolute;
+            left: 15px;
+            bottom: -5px;
+            max-width: 75px;
         }
 
         .nombre_jugador{
@@ -71,6 +82,11 @@
         .bloque_prediccion{
             padding-bottom: 36px;
         }
+
+        .banderas_jornada{ max-width: 80px; }
+        .bloque_jornada{ padding: 0 10%; }
+
+        .opc_jornada{ margin-right: 12px; }
     </style>
 </head>
 
@@ -78,14 +94,14 @@
     
     <div class="body_wrapper">
         
-        <section class="software_promo_area bg_color sec_pad" style="min-height: 100vh">
+        <section id="fondo_actividad" class="software_promo_area bg_color sec_pad" style="min-height: 100vh">
             <div class="container">
                 <div class="row">
                     
                     <div class="col-lg-5" style="padding-left: 2%">
                         <div class="faq_tab">
-                            <h4 class="f_p t_color3 f_600 f_size_22 mb_40">Jornada</h4>
-                            <p><?php echo $jornada["fechadia"] ?></p>
+                            <img src="img/bimbotinto_jornada.png" width="100%" align="center">
+                            <h4 class="tit4 text-center">Tus predicciones</h4>
 
                             <?php include( "secciones/info_jornada.php" ); ?>
                         </div>
@@ -93,11 +109,18 @@
 
                     <div class="col-lg-5 offset-lg-1" style="padding-right: 2%">
                         <?php include ( "secciones/prediccion_jornada.php" )?>
-                        <div align="center" style="margin-top: 100px">
-                            <a href="paso2.html" class="cus_mb-10 jbtn" data-paso="1">
-                                Modificar
-                            </a>
-                        </div>
+                        <?php if( "secciones/prediccion_jornada.php" ) { ?>
+                            <div align="center" style="margin-top: 100px">
+
+                                <a href="inicio.php" class="azbtn btn_hover cus_mb-10 btn_siguiente paso_ganador opc_jornada">
+                                    Inicio
+                                </a>
+                                <a href="alineacion.php" class="azbtn btn_hover cus_mb-10 btn_siguiente paso_ganador opc_jornada" >
+                                    Modificar
+                                </a>
+                                
+                            </div>
+                        <?php } ?>
                     </div>
                     
                 </div>

@@ -1,5 +1,5 @@
 <div id="jugadores_posiciones" class="job_listing Cus_jobli">
-    <h5 class="f_p f_size_24 l_height28 f_500 t_color3 mb-30">Posiciones</h5>
+    <h5 class="tit4 text-center">Posiciones</h5>
     
     <div id="job_filter" class="job_list_tab">
         <div class="row">
@@ -24,18 +24,20 @@
         
         <!-- Porteros -->
         <div class="row fila_jugadores">
-            <?php foreach ( $jugadores["porteros"] as $j ): 
-                $jsel = jPreseleccionado( $j, $prediccion, "P" );
+            <?php 
+                $jg = 0;
+                foreach ( $jugadores["porteros"] as $j ): 
+                    $jsel = jPreseleccionado( $j, $prediccion, "P" );
             ?>
                 <div class="col" align="center">
-                    <a href="#!" class="jgseleccion" data-jg="<?php echo $j['a'] ?>" data-trg="e_pr">
-                        <div class="item prt <?php echo $jsel?>">
+                    <a href="#!" class="jgseleccion" data-jg="<?php echo $j['a'] ?>" data-trg="e_pr" data-pj="pj<?php echo $jg ?>">
+                        <div id="pj<?php echo $jg ?>" class="item prt <?php echo $jsel?>">
                             <img src="img/player.png" alt="" class="imgjugador">
                             <div class="nombre_jugador_pos"><?php echo $j["n"]." ".$j["a"] ?></div>
                         </div>
                     </a>
                 </div>
-            <?php endforeach ?>
+            <?php $jg++; endforeach ?>
         </div>
 
         <!-- Mediocampistas -->

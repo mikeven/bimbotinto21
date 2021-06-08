@@ -16,23 +16,39 @@ function casillaDisponible( pos ){
     return pos_dsp;
 }
 /* ----------------------------------------------------------------------------------- */
-function yaSeleccionado( jugador, pos ){
+function casillaJugador( jugador, pos ){
+    // Devuelve la casilla disponible de una posición
+    var pos_jgd = "";
+
+    $( "." + pos ).each(function() {
+        console.log( jugador + " " + pos );
+        if( $(this).html() == jugador ) {
+            
+        }
+    });
+    
+    return pos_jgd;
+}
+/* ----------------------------------------------------------------------------------- */
+function posicionSeleccionado( jugador, pos ){
     // Devuelve verdadero si un jugador ya fue asignado a una posición
-    var seleccionado = false;
+    var pos_jgd = "ninguna";
     
     $( "." + pos ).each(function() {
         if( $(this).html() == jugador ) {
             $(this).html("");
-            seleccionado = true;
+            pos_jgd = $(this).attr("id");
         }
     });
     
-    return seleccionado;
+    return pos_jgd;
 }
 /* ----------------------------------------------------------------------------------- */
 function asignarJugadorPosicion( jugador, pos ){
     var casilla = casillaDisponible( pos );
     $( "#" + casilla ).html( jugador );
+
+    return casilla;
 }
 /* ----------------------------------------------------------------------------------- */
 function alineacionCompleta(){
@@ -123,8 +139,10 @@ function guardarPrediccion( p, idvalor ){
             res = jQuery.parseJSON( response );
             
             if( res.exito == 1 ){
-                // Siguiente paso
-
+                if( p == "primergol" )
+                    window.location = "ganador-encuentro.php";
+                if( p == "ganador" )
+                    window.location = "jornada.php";
             } else {
                 $("#reg-resp").addClass( "frm_error" );
                 $("#reg-resp").html( res.mje );
@@ -139,8 +157,21 @@ $( document ).ready(function() {
     $('.jgseleccion').on('click', function(){
         var jugador     = $(this).attr( "data-jg" );
         var posicion    = $(this).attr( "data-trg" );
-        if( yaSeleccionado( jugador, posicion ) == false )
-            asignarJugadorPosicion( jugador, posicion );
+
+        pos_j           = posicionSeleccionado( jugador, posicion );
+        
+        if( pos_j == "ninguna" ){
+            
+            pos_a = asignarJugadorPosicion( jugador, posicion );
+            if( pos_a != "ninguna"){
+                $(this).find('.item:first').addClass("item_s");
+                cambiarFranela( pos_a, true );
+            }
+
+        }else{
+            $(this).find('.item:first').removeClass("item_s");
+            cambiarFranela( pos_j, false );
+        }
         
         alineacionCompleta();
     });
@@ -170,9 +201,9 @@ $( document ).ready(function() {
         }
     });
 
-    $(".item").on('click', function(){
+    /*$(".item").on('click', function(){
         $(this).toggleClass( "item_s" );
-    });
+    });*/
 
     $(".jugador_alineado").on('click', function(){
         $(".jugador_alineado").removeClass("sel_pgol");

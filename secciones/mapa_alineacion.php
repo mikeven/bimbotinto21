@@ -2,16 +2,16 @@
     $chv = "";
     if( $prediccion ) $chv = "checked";
 ?>
-<div id="esquema_aln" class="round__shape mt_30"> 
+<div id="esquema_alineacion" > 
     <div class="s_promo_info">
         
         <!-- Portero -->
 
         <div class="row posicionalieacion">
             <div class="col" align="center">
-                <div class="promo_item def1 scroll_animation">
+                <div class="promo_item_ def1 scroll_animation">
                     <div class="text">
-                        <img src="img/saas/icon/slack.png" alt="">
+                        <img src="img/blanca.png" alt="franela" class="imgfranela frporteropos">
                     </div>
                 </div>
                 <div id="porteropos" class="etiq_portero e_pr"><?php echo $prediccion["jugador0"]?></div>
@@ -20,36 +20,36 @@
         
         <!-- MedioCampistas -->
 
-        <div class="row posicionalieacion">
+        <div class="row posicionalieacion pan1">
             
             <div class="col" align="center">
-                <div class="promo_item def1 scroll_animation msup">
+                <div class="promo_item_ def1 scroll_animation msup">
                     <div class="text">
-                        <img src="img/saas/icon/slack.png" alt="">
+                        <img src="img/blanca.png" alt="franela" class="imgfranela frmc1">
                     </div>
                 </div>
                 <div id="mc1" class="etiq_jugador e_mc"><?php echo $prediccion["jugador1"]?></div>
             </div>
             <div class="col" align="center">
-                <div class="promo_item def2 scroll_animation">
+                <div class="promo_item_ def2 scroll_animation">
                     <div class="text">
-                        <img src="img/saas/icon/slack.png" alt="">
+                        <img src="img/blanca.png" alt="franela" class="imgfranela frmc2">
                     </div>
                 </div>
                 <div id="mc2" class="etiq_jugador e_mc"><?php echo $prediccion["jugador2"]?></div>
             </div>
             <div class="col" align="center">
-                <div class="promo_item def2 scroll_animation">
+                <div class="promo_item_ def2 scroll_animation">
                     <div class="text">
-                        <img src="img/saas/icon/slack.png" alt="">
+                        <img src="img/blanca.png" alt="franela" class="imgfranela frmc3">
                     </div>
                 </div>
                 <div id="mc3" class="etiq_jugador e_mc"><?php echo $prediccion["jugador3"]?></div>
             </div>
             <div class="col" align="center">
-                <div class="promo_item def2 scroll_animation msup">
+                <div class="promo_item_ def2 scroll_animation msup">
                     <div class="text">
-                        <img src="img/saas/icon/slack.png" alt="">
+                        <img src="img/blanca.png" alt="franela" class="imgfranela frmc4">
                     </div>
                 </div>
                 <div id="mc4" class="etiq_jugador e_mc"><?php echo $prediccion["jugador4"]?></div>
@@ -59,36 +59,36 @@
         
         <!-- Defensas -->
 
-        <div class="row posicionalieacion">
+        <div class="row posicionalieacion pan2">
             
             <div class="col" align="center">
-                <div class="promo_item def1 scroll_animation msup">
+                <div class="promo_item_ def1 scroll_animation msup">
                     <div class="text">
-                        <img src="img/saas/icon/slack.png" alt="">
+                        <img src="img/blanca.png" alt="franela" class="imgfranela frdf1">
                     </div>
                 </div>
                 <div id="df1" class="etiq_jugador e_df"><?php echo $prediccion["jugador5"]?></div>
             </div>
             <div class="col" align="center">
-                <div class="promo_item def2 scroll_animation">
+                <div class="promo_item_ def2 scroll_animation">
                     <div class="text">
-                        <img src="img/saas/icon/slack.png" alt="">
+                        <img src="img/blanca.png" alt="franela" class="imgfranela frdf2">
                     </div>
                 </div>
                 <div id="df2" class="etiq_jugador e_df"><?php echo $prediccion["jugador6"]?></div>
             </div>
             <div class="col" align="center">
-                <div class="promo_item def2 scroll_animation">
+                <div class="promo_item_ def2 scroll_animation">
                     <div class="text">
-                        <img src="img/saas/icon/slack.png" alt="">
+                        <img src="img/blanca.png" alt="franela" class="imgfranela frdf3">
                     </div>
                 </div>
                 <div id="df3" class="etiq_jugador e_df"><?php echo $prediccion["jugador7"]?></div>
             </div>
             <div class="col" align="center">
-                <div class="promo_item def2 scroll_animation msup">
+                <div class="promo_item_ def2 scroll_animation msup">
                     <div class="text">
-                        <img src="img/saas/icon/slack.png" alt="">
+                        <img src="img/blanca.png" alt="franela" class="imgfranela frdf4">
                     </div>
                 </div>
                 <div id="df4" class="etiq_jugador e_df"><?php echo $prediccion["jugador8"]?></div>
@@ -98,20 +98,20 @@
 
         <!-- Delanteros -->
 
-        <div class="row posicionalieacion">
+        <div class="row posicionalieacion pan3">
             
             <div class="col" align="center">
-                <div class="promo_item def1 scroll_animation">
+                <div class="promo_item_ def1 scroll_animation">
                     <div class="text">
-                        <img src="img/saas/icon/slack.png" alt="">
+                        <img src="img/blanca.png" alt="franela" class="imgfranela frdl1">
                     </div>
                 </div>
                 <div id="dl1" class="etiq_jugador e_dl"><?php echo $prediccion["jugador9"]?></div>
             </div>
             <div class="col" align="center">
-                <div class="promo_item def2 scroll_animation">
+                <div class="promo_item_ def2 scroll_animation">
                     <div class="text">
-                        <img src="img/saas/icon/slack.png" alt="">
+                        <img src="img/blanca.png" alt="franela" class="imgfranela frdl2">
                     </div>
                 </div>
                 <div id="dl2" class="etiq_jugador e_dl"><?php echo $prediccion["jugador10"]?></div>

@@ -196,7 +196,8 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .f_p {
-  font-family: "GothamBlack", sans-serif;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 /*=========== font-weight ==============*/
@@ -11284,7 +11285,7 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
   content: "";
   width: 0;
   height: 1px;
-  background: #5f2eed;
+  /*background: #5f2eed;*/
   position: absolute;
   bottom: 0;
   left: auto;
@@ -12281,13 +12282,13 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 }
 
 .text_box input[type="text"], .text_box textarea, .text_box input[type="password"], .text_box input[type="email"] {
-  font: 400 15px/60px "GothamBook", sans-serif;
+  font: 400 15px/60px 'Poppins', sans-serif;
   color: #222d39;
   height: 45px;
   border-radius: 4px;
   background-color: white;
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(12, 0, 46, 0.04);
-  box-shadow: 0px 2px 4px 0px rgba(12, 0, 46, 0.04);
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(12, 0, 46, 0.14);
+  box-shadow: 0px 4px 4px 0px rgba(12, 0, 46, 0.14);
   width: 100%;
   border: 1px solid #fff;
   padding-left: 30px;
@@ -12366,7 +12367,7 @@ a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
 
 .login-form .text_box .text_c {
   color: #161341;
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 5px;
 }
 

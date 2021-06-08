@@ -36,7 +36,7 @@
         .imgbtinto{
             max-height: 80px;
         }
-        #form_ingreso{ display: none; }
+        #form_ingreso, .form_ingreso{ display: none; }
         .sign_info {
             padding: 20px 50px;
         }
@@ -46,77 +46,88 @@
 <body>
     
     <div class="body_wrapper">
-
-        <section class="sign_in_area bg_color sec_pad">
+        <section id="fondo_actividad" class="sign_in_area bg_color sec_pad" style="min-height: 100vh">
             
-
             <div class="container">
-                <div id="logobimbotinto"><img src="img/btinto.png" class="imgbtinto"></div>
+
+                <div id="logobimbotinto">
+                    <img src="img/logo-bimbotinto.png" width="40%" align="center">
+                </div>
+
                 <div class="sign_info">
                     <div class="row">
-                        <div class="col-lg-5">
+                        <div class="col-lg-6">
                             <div class="sign_info_content">
                                 <div class="start_img">
-                                    <img src="img/login_img2.png" alt="" style="max-width: 100%;">
+                                    <img src="img/bimbotinto-ingreso.png" alt="" style="max-width: 100%;">
                                 </div>
-                                <button type="submit" class="btn_three sign_btn_transparent">Sign In</button>
+                                <div align="center" class="form_registro">
+                                    <p>Ya estoy registrado</p>
+                                    <a id="enl_frmlogin" class="login-link azbtn btn_hover btn_hover cus_mb-10" href="#">
+                                        Ingresar <i class="ti-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div align="center" class="form_ingreso">
+                                    <p>Aún no estoy registrado</p>
+                                    <a id="enl_frmregistro" class="login-link azbtn btn_hover btn_hover cus_mb-10" href="#">
+                                        Regístrate <i class="ti-arrow-right"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-7">
-                            <div id="form_registro" class="login_info frm_participantes">
-                                <h2 class="f_p f_700 f_size_40 t_color3 mb_20">Regístrate en Bimbo Tinto</h2>
+                        <div class="col-lg-6">
+                            <div id="form_registro" class="login_info frm_participantes form_registro">
+                                <h2 class="tit1">Regístrate</h2>
                                 
                                 <form id="frm_register" action="#" class="login-form mt_60">
                                     
                                     <div class="form-group text_box">
-                                        <label class="f_p text_c f_400">Nombre</label>
+                                        <label class="f_p text_c f_900">Nombre</label>
                                         <input type="text" placeholder="Nombre" name="nombre">
                                     </div>
                                     <div class="form-group text_box">
-                                        <label class="f_p text_c f_400">Apellido</label>
+                                        <label class="f_p text_c f_900">Apellido</label>
                                         <input type="text" placeholder="Apellido" name="apellido">
                                     </div>
                                     <div class="form-group text_box">
-                                        <label class="f_p text_c f_400">Email</label>
+                                        <label class="f_p text_c f_900">Email</label>
                                         <input type="text" placeholder="nombre@tuemail.com" name="email">
                                     </div>
                                     <div class="form-group text_box">
-                                        <label class="f_p text_c f_400">Password</label>
+                                        <label class="f_p text_c f_900">Password</label>
                                         <input type="password" placeholder="******" name="password">
                                     </div>
-                                    
-                                    <button type="submit" class="btn_three">Registrar</button>
+
+                                    <div align="right">
+                                        <button type="submit" class="azbtn btn_hovert">Registrar</button>
+                                    </div>
                                     
                                     <div id="reg-resp"> </div>
                                     
-                                    <div class="alter-login text-center mt_30">
-                                        Ya estoy registrado <a id="enl_frmlogin" class="login-link" href="#">Ingresa</a>
-                                    </div>
                                 </form>
                             </div>
 
-                            <div id="form_ingreso" class="login_info frm_participantes">
-                                <h2 class="f_p f_700 f_size_40 t_color3 mb_20">Entra a BimboTinto</h2>
+                            <div id="form_ingreso" class="login_info frm_participantes form_ingreso">
+                                <h2 class="tit1">Inicia Sesión</h2>
                                 
                                 <form id="frm_login" action="#" class="login-form mt_60">
                                     <input type="hidden" name="usr_login" value="1">
                                     <div class="form-group text_box">
-                                        <label class="f_p text_c f_400">Email</label>
+                                        <label class="f_p text_c f_900">Email</label>
                                         <input type="text" placeholder="nombre@tuemail.com" name="email">
                                     </div>
                                     
                                     <div class="form-group text_box">
-                                        <label class="f_p text_c f_400">Password</label>
+                                        <label class="f_p text_c f_900">Password</label>
                                         <input type="password" placeholder="******" name="password">
                                     </div>
                                     
-                                    <button type="submit" class="btn_three">Entrar</button>
+                                    <div align="right">
+                                        <button type="submit" class="azbtn btn_hovert">Entrar</button>
+                                    </div>
                                     
                                     <div id="log-resp"> </div>
                                     
-                                    <div class="alter-login text-center mt_30">
-                                        No estoy registrado <a id="enl_frmregistro" class="login-link" href="#">Regístrate</a>
-                                    </div>
                                 </form>
                             </div>
                         </div>
