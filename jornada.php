@@ -11,15 +11,16 @@
     include( "db/data-jornadas.php" );
 
     checkSession( "" );
+    $idp                    = $_SESSION["user"]["id"];
 
     if( isset( $_GET['j'] ) )
-        $idj            = $_GET['j'];
+        $idj                = $_GET['j'];
     else{
         $jornada_actual     = obtenerJornadaActiva( $dbh );
         $idj                = $jornada_actual["id"];
     }
-    $jornada        = obtenerJornadaPorId( $dbh, $idj );
-    $prediccion     = obtenerPrediccionJornada( $dbh );
+    $jornada                = obtenerJornadaPorId( $dbh, $idj );
+    $prediccion             = obtenerPrediccionJornadaUsuario( $dbh, $idp, $idj );
         
 ?>
 <!doctype html>
@@ -87,6 +88,7 @@
         .bloque_jornada{ padding: 0 10%; }
 
         .opc_jornada{ margin-right: 12px; }
+        .jugador_once{ opacity: 0; }
     </style>
 </head>
 
@@ -100,7 +102,7 @@
                     
                     <div class="col-lg-5" style="padding-left: 2%">
                         <div class="faq_tab">
-                            <img src="img/bimbotinto_jornada.png" width="100%" align="center">
+                            <img id="resjornada" src="img/bimbotinto_jornada.png" width="100%" align="center">
                             <h4 class="tit4 text-center">Tus predicciones</h4>
 
                             <?php include( "secciones/info_jornada.php" ); ?>
@@ -115,10 +117,11 @@
                                 <a href="inicio.php" class="azbtn btn_hover cus_mb-10 btn_siguiente paso_ganador opc_jornada">
                                     Inicio
                                 </a>
-                                <a href="alineacion.php" class="azbtn btn_hover cus_mb-10 btn_siguiente paso_ganador opc_jornada" >
-                                    Modificar
-                                </a>
-                                
+                                <?php if( $jornada["cerrado"] == "0" ) { ?>
+                                    <a href="alineacion.php" class="azbtn btn_hover cus_mb-10 opc_jornada">
+                                        Modificar
+                                    </a>
+                                <?php } ?>
                             </div>
                         <?php } ?>
                     </div>
@@ -141,13 +144,17 @@
     <script src="vendors/isotope/isotope-min.js"></script>
     <script src="vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
     <script src="vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/fn-transiciones.js"></script>
     <script src="js/fn-bimbotinto.js"></script>
     <script type="text/javascript">
         $('.list_item_tab').on('click', function () {
             $('#tab_filter').fadeIn();
         });
+        imagenPaso( "#resjornada", "y-mov" );
+        resumenJornada();
     </script>
 </body>
 

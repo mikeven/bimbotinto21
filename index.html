@@ -2,13 +2,36 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <!-- Primary Meta Tags -->
+    <title>BimboTinto</title>
+    <meta charset="UTF-8">
+    <meta name="title" content="BimboTinto">
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <title>BimboTinto - Regístrate</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bimbovenezuela.com/bimbotinto/">
+    <meta property="og:title" content="BimboTinto">
+    <meta property="og:description" content="BimboTinto 2021">
+    <meta property="og:image" content="https://bimbovenezuela.com/bimbotinto/img/bimbotinto-aplicacion.png">
+    <meta property="og:image:secure_url" content="https://bimbovenezuela.com/bimbotinto/img/bimbotinto-aplicacion.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="600"/>
+    <meta property="og:image:height" content="450"/>
+    <meta property="og:image:alt" content="A shiny red apple with a bite taken out"/>
+
+    <meta property="fb:app_id" content="771429363482702"/>
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bimbovenezuela.com/bimbotinto/">
+    <meta property="twitter:title" content="BimboTinto">
+    <meta property="twitter:description" content="BimboTinto 2021">
+    <meta property="twitter:image" content="https://bimbovenezuela.com/bimbotinto/img/bimbotinto-aplicacion.png">
+
     <link rel="canonical" href="https://www.bimbovenezuela.com/registro.html"/>
-    
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="vendors/bootstrap-selector/css/bootstrap-select.min.css">
@@ -36,9 +59,22 @@
         .imgbtinto{
             max-height: 80px;
         }
-        #form_ingreso, .form_ingreso{ display: none; }
+        #form_ingreso, .form_ingreso, #form_password, label{ display: none; }
         .sign_info {
             padding: 20px 50px;
+        }
+
+        #form_password{
+            margin-top: 32px;
+            padding: 12px 8px;
+        }
+
+        #log-resp{
+            margin: 50px 0;
+        }
+
+        #condiciones{
+            padding: 26px 0;
         }
     </style>
 </head>
@@ -51,7 +87,7 @@
             <div class="container">
 
                 <div id="logobimbotinto">
-                    <img src="img/logo-bimbotinto.png" width="40%" align="center">
+                    <img src="img/logo-bimbotinto.png" width="30%" align="center">
                 </div>
 
                 <div class="sign_info">
@@ -74,13 +110,24 @@
                                     </a>
                                 </div>
                             </div>
+                            <div id="condiciones" class="row">
+                                <div class="col-lg-6" align="right">
+                                    <a id="enl_reglas" class="" href="#">
+                                        Reglas 
+                                    </a>
+                                </div>
+                                <div class="col-lg-6" align="left"> 
+                                    <a id="enl_reglas" class="" href="premios.html">
+                                        Premios </i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-6">
                             <div id="form_registro" class="login_info frm_participantes form_registro">
                                 <h2 class="tit1">Regístrate</h2>
                                 
                                 <form id="frm_register" action="#" class="login-form mt_60">
-                                    
                                     <div class="form-group text_box">
                                         <label class="f_p text_c f_900">Nombre</label>
                                         <input type="text" placeholder="Nombre" name="nombre">
@@ -91,11 +138,11 @@
                                     </div>
                                     <div class="form-group text_box">
                                         <label class="f_p text_c f_900">Email</label>
-                                        <input type="text" placeholder="nombre@tuemail.com" name="email">
+                                        <input type="text" placeholder="Email" name="email">
                                     </div>
                                     <div class="form-group text_box">
                                         <label class="f_p text_c f_900">Password</label>
-                                        <input type="password" placeholder="******" name="password">
+                                        <input type="password" placeholder="Contraseña" name="password">
                                     </div>
 
                                     <div align="right">
@@ -103,36 +150,52 @@
                                     </div>
                                     
                                     <div id="reg-resp"> </div>
-                                    
                                 </form>
                             </div>
 
                             <div id="form_ingreso" class="login_info frm_participantes form_ingreso">
                                 <h2 class="tit1">Inicia Sesión</h2>
-                                
                                 <form id="frm_login" action="#" class="login-form mt_60">
                                     <input type="hidden" name="usr_login" value="1">
                                     <div class="form-group text_box">
                                         <label class="f_p text_c f_900">Email</label>
-                                        <input type="text" placeholder="nombre@tuemail.com" name="email">
+                                        <input type="text" placeholder="Email" name="email">
                                     </div>
                                     
                                     <div class="form-group text_box">
                                         <label class="f_p text_c f_900">Password</label>
-                                        <input type="password" placeholder="******" name="password">
+                                        <input type="password" placeholder="Password" name="password">
                                     </div>
                                     
                                     <div align="right">
                                         <button type="submit" class="azbtn btn_hovert">Entrar</button>
                                     </div>
-                                    
-                                    <div id="log-resp"> </div>
-                                    
+                                    <div align="left">
+                                        <a href="#!" id="rpassword">Recuperar contraseña</a>
+                                    </div>
+                                    <div style="clear: both;"></div>
                                 </form>
                             </div>
+
+                            <div id="form_password" class="login_info">
+                                <form id="frm_password" class="password_recover">
+                                    <div class="form-group text_box">
+                                        <p><b>Indica el email que usaste para registrarte y te enviaremos tu contraseña</b></p>
+                                        <input type="text" placeholder="Email" name="email">
+                                    </div>
+                                    <div style="float: right;">
+                                        <a href="#!">
+                                            <button type="submit" class="azbtn btn_hovert">Enviar</button>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="log-resp"> </div>
                         </div>
                     </div>
+                    
                 </div>
+                
             </div>
         </section>
     </div>
@@ -149,6 +212,7 @@
     <script src="vendors/isotope/isotope-min.js"></script>
     <script src="vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
     <script src="vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/fn-bimbotinto.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
     <!-- Validator -->

@@ -73,7 +73,7 @@ function alineacionCompleta(){
         $( ".chjugador" ).prop('checked', true);
         
     }  
-    console.log("COMPLETO: "+completo);
+    //console.log("COMPLETO: "+completo);
     siguientePaso( completo );
     
     return completo;
@@ -201,9 +201,9 @@ $( document ).ready(function() {
         }
     });
 
-    /*$(".item").on('click', function(){
-        $(this).toggleClass( "item_s" );
-    });*/
+    $("#rpassword").on('click', function(){
+        $("#form_password").fadeIn();
+    });
 
     $(".jugador_alineado").on('click', function(){
         $(".jugador_alineado").removeClass("sel_pgol");

@@ -25,6 +25,14 @@
         return mysqli_fetch_array( mysqli_query ( $dbh, $q ) );
     }
     /* ----------------------------------------------------------------------------------- */
+    function guardarPuntuacion( $dbh, $pts_al, $pts_pgol, $pts_ganador, $idprd, $idj ){
+        // Devuelve los datos de los partidos registrados de la Vinotinto
+        $q = "update prediccion set puntos_alineacion = $pts_al, puntos_primergol = $pts_pgol, 
+                puntos_ganador = $pts_ganador where id = $idprd and jornada = $idj";
+        
+        return mysqli_query ( $dbh, $q );
+    }
+    /* ----------------------------------------------------------------------------------- */
     function jugadoresPosicion( $i, $resultados ){
         // Devuelve los jugadores de los resultados ubicados en una posicion
 
@@ -87,24 +95,23 @@
         include( "db/db.php" );
         include( "db/data-resultados.php" );
         
-        $IDJ = 1;
+        $IDJ = $_GET["jornadabimbotinto"];
         
-        $resultados     = $resultados_jornada[ $IDJ ];
+        $resultados     = $resultados_jornada[ $IDJ ];              // data-resultados.php
         $jornada        = obtenerJornadaPorId( $dbh, $IDJ );
         $predicciones   = obtenerPrediccionesJornada( $dbh, $IDJ );
 
         echo "Resultados sobre la Jornada $jornada[fechadia] : $jornada[equipo1] - $jornada[equipo2]"."<br>";
         echo "======================================================"."<br><br>";;
 
-
-
         foreach ( $predicciones as $reg ) {
             
             $ptos_p1 = puntajePorAlineacion( $reg, $resultados["jugadores"] );
-            $ptos_p2 = puntajePorPaso( $reg, $resultados, "primergol" );
-            $ptos_p3 = puntajePorPaso( $reg, $resultados, "idganador" );
-            
+            $ptos_p2 = puntajePorPaso( $reg, $resultados, "primergol" ); $ptos_p3 = puntajePorPaso( $reg, $resultados, "idganador" );
+            //$ptos_p2 = $ptos_p3 = 0;
+
             echo $reg["nombrep"]." ".$reg["apellidop"]." ".$ptos_p1." ".$ptos_p2." ".$ptos_p3."<br>"; 
+            guardarPuntuacion( $dbh, $ptos_p1, $ptos_p2, $ptos_p3, $reg["idprediccion"], $IDJ );
         }
     }
 ?>

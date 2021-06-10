@@ -45,6 +45,7 @@
             left: 15px;
             bottom: 0px;
         }
+        .jugador_alineado{ opacity: 0; }
 
         .fila_jugadores { padding-top: 20px; padding-bottom: 12px; padding-right: 3%; padding-left: 3%; }
         
@@ -62,7 +63,7 @@
                     <div class="col-lg-5" style="padding-left: 2%">
                         <div class="faq_tab" align="center">
                             <h4 class="tit4 text-center">Primer gol</h4>
-                            <img src="img/gol.png" width="90%" align="center">
+                            <img id="imgpgol" src="img/gol.png" width="90%" align="center">
                             <p> De tus 11 jugadores, ¿quién crees que anote el primer gol?</p>
                             <p> <span class="btpts">+60 puntos</span> </p>
                             <div align="center" class="btn_siguiente_paso">
@@ -98,9 +99,15 @@
     <script src="vendors/isotope/isotope-min.js"></script>
     <script src="vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
     <script src="vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
     <script src="js/fn-bimbotinto.js"></script>
+    <script src="js/fn-transiciones.js"></script>
+    <script type="text/javascript">
+        imagenPaso( "#imgpgol", "fade" );
+        listaJugadores();
+    </script>
     
 </body>
 

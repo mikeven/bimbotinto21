@@ -10,8 +10,7 @@
     include( "db/data-jornadas.php" );
 
     checkSession( "" );
-    $puntuaciones           = obtenerPuntuaciones( $dbh );
-    
+    $jornadas       = obtenerJornadas( $dbh );
 ?>
 <!doctype html>
 <html lang="en">
@@ -43,6 +42,11 @@
         .tabla_posiciones th, .tabla_posiciones td{ padding: 4px 6px; }
         .tabla_posiciones thead{ background: #9d0b0b; color: #fff; }
         .tabla_posiciones tbody{ background: #8e0313; color: #fff; }
+        .tabfecha{
+            color: #000;
+            font-size: 14px;
+            padding: 4px; border: 1px solid #ccc;
+        }
         table {
           border-collapse: collapse;
           border-radius: 0.5em;
@@ -58,9 +62,21 @@
             border-bottom-left-radius: 5px;
         }
 
-table tr:last-child td:last-child {
-    border-bottom-right-radius: 5px;
-}
+        table tr:last-child td:last-child {
+            border-bottom-right-radius: 5px;
+        }
+
+        .faq_content .tab-pane .card .card-header .btn {
+            color: #8e0313;
+            display: block;
+            width: 100%;
+            text-align: left;
+            font: 500 18px/26px "Poppins", sans-serif;
+            padding: 20px 30px 20px 10px;
+            position: relative;
+            white-space: normal;
+            background: rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 
@@ -79,17 +95,14 @@ table tr:last-child td:last-child {
                     <div class="col-lg-5 order-sm-1 pr_50" style="padding-left: 2%">
                         <div class="faq_tab">
                             <img src="img/logo-bimbotinto.png" width="100%" align="center">
-                            <img src="img/bimbo_trofeo.png" width="100%" align="center">
+                            <img id="imgpremio" src="img/bimbo_trofeo.png" width="100%" align="center">
                             <h4 class="tit4 text-center">Puntuaciones</h4>
                             <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a href="inicio.php" class="jbtn btn_hover agency_banner_btn pay_btn pay_btn_two cus_mb-10">Inicio</a>
+                                    <a href="inicio.php" class="jbtn btn_hover cus_mb-10">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="premios.php" class="jbtn btn_hover agency_banner_btn pay_btn pay_btn_two cus_mb-10">Premios</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="puntuaciones.php" class="jbtn btn_hover agency_banner_btn pay_btn pay_btn_two cus_mb-10">Puntuaciones</a>
+                                    <a href="premios_bimbotinto.html" class="jbtn btn_hover cus_mb-10">Premios</a>
                                 </li>
                             </ul>
                         </div>
@@ -113,8 +126,16 @@ table tr:last-child td:last-child {
     <script src="vendors/isotope/isotope-min.js"></script>
     <script src="vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
     <script src="vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/fn-transiciones.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript">
+        imagenPaso( "#imgpremio", "y-mov" );
+        animarPremio();
+    </script>
 </body>
 
 </html>

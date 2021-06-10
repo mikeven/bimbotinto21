@@ -3,24 +3,7 @@
 	/* Bimbo Tinto - Funciones de usuarios */
 	/* ----------------------------------------------------------------------------------- */
 	/* ----------------------------------------------------------------------------------- */
-	function ultimaActualizacion( $dbh, $idu ){
-		//Retorna la fecha donde se realizó la última actualización de documentos de usuario
-		$q = "select date_format(ultima_act_doc,'%Y-%m-%d') as fecha from clients where id = $idu";
-		$data = mysql_fetch_array( mysql_query ( $q, $dbh ) );
-		
-		return $data["fecha"];
-	}
-	/* ----------------------------------------------------------------------------------- */
-	function chequearActualizacion( $dbh, $hoy, $idu ){
-		//Chequea el estado de actualización de documentos e invoca a su revisión
-		include( "bd/data-documento.php" );
-		$fult_act_docs = ultimaActualizacion( $dbh, $idu );
-		
-		if( $fult_act_docs < $hoy ){
-			revisarEstadoDocumentos( $dbh, $idu, $hoy );
-		}		
-	}
-	/* ----------------------------------------------------------------------------------- */
+	
 	/* --------------------------------------------------------- */
 	function checkSession( $pag ){
 		// Redirecciona a la página de inicio de sesión en caso de no existir sesión de usuario
@@ -55,11 +38,17 @@
 		return $data_user;					
 	}
 	/* ----------------------------------------------------------------------------------- */
-	function obtenerUsuarioPorId( $idu, $dbh ){
-		//Devuelve los datos de un usuario dado su id
-		$sql = "select * from clients where id = $idu";
+	function obtenerUsuarioPorId( $dbh, $idu ){
+		//Devuelve los datos de un participante dado su id
+		$sql = "select * from participante where id = $idu";
 		$data_user = mysqli_fetch_array( mysqli_query ( $dbh, $sql ) );
 		return $data_user;					
+	}
+	/* ----------------------------------------------------------------------------------- */
+	function obtenerUsuarioPorEmail( $dbh, $email ){
+		//Devuelve los datos de un participante dado su email
+		$q = "select * from participante where email = '$email'";
+		return mysqli_fetch_array( mysqli_query ( $dbh, $q ) );				
 	}
 	/* ----------------------------------------------------------------------------------- */
 	function iniciarSesion( $data_u ){
@@ -111,34 +100,34 @@
 		return $existe;
 	}
 	/* ----------------------------------------------------------------------------------- */
-	function verificarCuenta( $dbh, $id_usuario ){
-		//Verifica cuenta de usuario después de su registro validado
-		$actualizado = 1;
-		$q = "update clients set verified = 1 where id = $id_usuario";
-		$r = mysqli_query( $dbh, $q );
-		if( mysqli_affected_rows( $dbh ) == -1 ) $actualizado = 0;
-		
-		return $actualizado;	
-	}
-	/* ----------------------------------------------------------------------------------- */
-	function actualizarPasswordUsuario( $dbh, $password, $token ){
-		//Asigna la nueva contraseña de usuario
-		$actualizado = 1;
-		$q = "update usuario set password = '$password' where token = '$token'";
+	function enviarPasswordEmail( $e_mail, $password ){
+		// Envía un mensaje por email con contraseña de usuario
 
-		$r = mysqli_query( $dbh, $q );
-		if( mysqli_affected_rows( $dbh ) == -1 ) $actualizado = 0;
+		$asunto = "Tu contraseña en Bimbotinto";
+		$oemail = "bimbotinto@bimbovenezuela.com";
 		
-		return $actualizado;
-	}
-	/* ----------------------------------------------------------------------------------- */
-	function obtenerOrdenesNoLeidas( $dbh, $usuario ){
-		//Devuelve el número de pedidos no leídos por el usuario
-		$q = "select count(id) as noleidos from orders 
-		where order_read = 'no-leido' and user_id = $usuario[id]";
-		$data_user = mysqli_fetch_array( mysqli_query ( $dbh, $q ) );
+		$cabeceras = "Reply-To: Bimbotinto <$oemail>\r\n"; 
+  		$cabeceras .= "Return-Path: Bimbotinto <$oemail>\r\n";
+  		$cabeceras .= "From: Bimbotinto <$oemail>\r\n"; 
+		$cabeceras .= "Organization: Bimbo\r\n";
+	  	$cabeceras .= "X-Priority: 3\r\n";
+	  	$cabeceras .= "X-Mailer: PHP". phpversion() ."\r\n"; 
+		$cabeceras .= 'MIME-Version: 1.0' . "\r\n";
+		$cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+        
+        $mensaje  = "<div style='width:320px; padding:8px 4px;'>";
+        	$mensaje .= "<div align='center'>";
+        		$mensaje .= "<img src='https://bimbovenezuela.com/bimbotinto/img/logo-bimbotinto.png' width='250'>";
+        	$mensaje .= "</div>";
+        	$mensaje .= "<hr>";
+        	$mensaje .= "<p style='font-size: 18px'>Tu contraseña para ingresar a BimboTinto es: </p>";
+        
+        	$mensaje .= "<p style='font-size: 17px; font-weight: bolder; color: #be1616'>$password</p>";
+        	$mensaje .= "<br>";
+        	$mensaje .= "<a href='https://bimbovenezuela.com/bimbotinto' style='font-size: 18px'>Ingresa a Bimbotinto</a>";
+        $mensaje  .= "</div>";
 
-		return $data_user["noleidos"];
+		return mail( $e_mail, $asunto, $mensaje, $cabeceras );
 	}
 	/* ----------------------------------------------------------------------------------- */
 	/* ----------------------------------------------------------------------------------- */
@@ -202,24 +191,40 @@
 	
 	/* ----------------------------------------------------------------------------------- */
 	
-	//Restablecimiento de contraseña
-	if( isset( $_POST["new_passw"] ) ){
+	//Envío de contraseña
+	if( isset( $_POST["env_passw"] ) ){
 		include( "db.php" );
 		
-		parse_str( $_POST["new_passw"], $data );
+		parse_str( $_POST["env_passw"], $data );
 
-		$res["exito"] = actualizarPasswordUsuario( $dbh, $data["password"], $data["token"] );
+		$participante 		= obtenerUsuarioPorEmail( $dbh, $data["email"] );
 		
-		if( $res["exito"] == 1 ){
-			$nuevo_token = obtenerTokenUsuarioNuevo( $data );
-			asignarNuevoTokenUsuario( $dbh, $data["token"], $nuevo_token );
-			$res["mje"] = "Contraseña restablecida con éxito <a href='sopa/'>Iniciar sesión</a>";
+		if( $participante ){
+			$envio 			= enviarPasswordEmail( $data["email"], $participante["password"] );
+			if( $envio ){
+				$res["exito"] 	= 1;
+				$res["mje"] 	= "Contraseña enviada a tu email";
+			}else{
+				$res["exito"] 	= -1;
+				$res["mje"] 	= "Error al enviar contraseña por email";
+			}
 		}
-		else
-			$res["mje"] = "Error al restablecer contraseña";
+		else{
+			$res["exito"] 	= -1;
+			$res["mje"] 	= "Email no registrado";
+		}
 		
 		echo json_encode( $res );	
 	}
 	
+	/* ----------------------------------------------------------------------------------- */
+	
+	if( isset( $_GET["logout"] ) ){
+		unset( $_SESSION["login"] );
+		unset( $_SESSION["user"] );
+		session_destroy();
+		echo "<script> window.location = 'index.html'</script>";
+	}
+
 	/* ----------------------------------------------------------------------------------- */
 ?>

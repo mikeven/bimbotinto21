@@ -21,7 +21,7 @@
 	/* ----------------------------------------------------------------------------------- */
 	function obtenerJornadaPorId( $dbh, $idj ){
 		// Devuelve los datos de los partidos registrados de la Vinotinto
-		$q = "select j.id as idj, date_format(j.fecha,'%d de %M') as fecha, 
+		$q = "select j.id as idj, date_format(j.fecha,'%d de %M') as fecha, j.cerrado, 
 				date_format(j.fecha,'%W %d de %M') as fechadia, e1.id as idequipo1, e1.nombre as equipo1, 
 				e1.bandera as bandera1, e2.id as idequipo2, e2.nombre as equipo2, e2.bandera as bandera2, j.cerrado 
 				from jornada j, equipo e1, equipo e2 where j.equipo1 = e1.id and j.equipo2 = e2.id and j.id = $idj";
@@ -79,11 +79,12 @@
 		// Devuelve los datos de predicción de la jornada activa
 		$idu 		= $_SESSION["user"]["id"];
 		$jractiva 	= obtenerJornadaActiva( $dbh );
-
+		if( !$jractiva )
+			header( "Location: inicio.php" );
 		return obtenerPrediccionJornadaUsuario( $dbh, $idu, $jractiva["id"] );
 	}
 	/* ----------------------------------------------------------------------------------- */
-	function prediccionJornadaActualIniciada( $dbh, $idj, $idp ){
+	function prediccionJornadaIniciada( $dbh, $idj, $idp ){
 		// Devuelve verdadero si la predicción de una jornada de participante está iniciada
 		$iniciada 	= false;
 		$prediccion = obtenerPrediccionJornadaUsuario( $dbh, $idp, $idj );
@@ -97,13 +98,20 @@
 		return $iniciada;
 	}
 	/* ----------------------------------------------------------------------------------- */
-	function obtenerPuntuaciones( $dbh ){
-		// Devuelve los registros de participantes y sus puntuaciones
+	function obtenerPuntuacionJornadaParticipante( $dbh, $idp, $idj ){
+		// Devuelve la puntuación total de un participante por jornada
+		$q = "select (puntos_alineacion + puntos_primergol + puntos_ganador) as puntos 
+				from prediccion where idparticipante = $idp and jornada = $idj";
+		
+		return mysqli_fetch_array( mysqli_query ( $dbh, $q ) );
+	}
+	/* ----------------------------------------------------------------------------------- */
+	function obtenerPuntuaciones( $dbh, $idj ){
+		// Devuelve los registros de participantes y sus puntuaciones por jornada
 		$q = "select concat_ws(' ', p.nombre, p.apellido) as participante,
-				sum( pre.puntos_alineacion ) as total_p1, sum( pre.puntos_primergol ) as total_p2, 
-				sum( pre.puntos_primergol ) as total_p3, 
-				sum( pre.puntos_alineacion + pre.puntos_primergol + pre.puntos_ganador ) as total 
-				from prediccion pre, participante p where pre.idparticipante=p.id order by total DESC";
+				pre.puntos_alineacion + pre.puntos_primergol + pre.puntos_ganador as total 
+				from prediccion pre, participante p where pre.idparticipante=p.id and pre.jornada = $idj 
+				group by p.id order by total DESC";
 		
 		return obtenerListaRegistros( mysqli_query( $dbh, $q ) );
 	}
@@ -119,21 +127,27 @@
 		$idu = $_SESSION["user"]["id"];
 		$jractiva = obtenerJornadaActiva( $dbh );
 
-		parse_str( $_POST["form_aln"], $alineacion );
-		$pronostico_jornada_actual = obtenerPrediccionJornadaUsuario( $dbh, $idu, $jractiva["id"] );
+		if( $jractiva ){
+			parse_str( $_POST["form_aln"], $alineacion );
+			$pronostico_jornada_actual = obtenerPrediccionJornadaUsuario( $dbh, $idu, $jractiva["id"] );
 
-		if( $pronostico_jornada_actual ){
-			$rsp = actualizarPrediccionAlineacion( $dbh, $idu, $jractiva["id"], $alineacion["al_jugadores"] );
-		}else{
-			$rsp = registrarPrediccionAlineacion( $dbh, $idu, $jractiva["id"], $alineacion["al_jugadores"] );
+			if( $pronostico_jornada_actual ){
+				$rsp = actualizarPrediccionAlineacion( $dbh, $idu, $jractiva["id"], $alineacion["al_jugadores"] );
+			}else{
+				$rsp = registrarPrediccionAlineacion( $dbh, $idu, $jractiva["id"], $alineacion["al_jugadores"] );
+			}
+
+			if( $rsp != -1 ) 
+					$res["exito"] 		= 1;
+			else 	
+					$res["exito"] 		= -1;
+			
+		}else{ 		
+			//Jornada cerrada
+			$res["exito"] 		= -2;
+			$res["mje"] 		= "Esta jornada ya fue cerrada";
 		}
 
-		if( $rsp != -1 ){
-			$res["exito"] 		= 1;
-		}else{
-			$res["exito"] 		= -1;
-		}
-		
 		echo json_encode( $res );
 
 	}

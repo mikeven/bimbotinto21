@@ -44,6 +44,7 @@
         .msup{
             margin-top: 35px;
         }
+        .jugador_alineado{ opacity: 0; }
         #posiciones_jugadores.owl-dots{
             margin-top: 25px !important;
         }
@@ -73,7 +74,7 @@
                     <div class="col-lg-5" style="padding-left: 2%">
                         <div class="faq_tab">
                             <h4 class="tit4 text-center">Ganador del partido</h4>
-                            <img src="img/bimbo_ganador.png" width="100%" align="center">
+                            <img id="imgganador" src="img/bimbo_ganador.png" width="100%" align="center">
                             <hr>
                             <p align="center">¿Quién ganará el encuentro?</p>
                             <p align="center">La respusta correcta obtiene</p>
@@ -109,13 +110,17 @@
     <script src="vendors/isotope/isotope-min.js"></script>
     <script src="vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
     <script src="vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/fn-transiciones.js"></script>
     <script src="js/fn-bimbotinto.js"></script>
     <script type="text/javascript">
         $('.list_item_tab').on('click', function () {
             $('#tab_filter').fadeIn();
         });
+        imagenPaso( "#imgganador", "fade" );
+        equiposJornada();
     </script>
 </body>
 

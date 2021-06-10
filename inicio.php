@@ -43,7 +43,9 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/custom_styles.css">
     <style type="text/css">
-
+        .sec_pad {
+            padding: 60px 0px;
+        }
         .lista_jornadas{
             padding-right: 10%; padding-left: 10%; max-height: 620px; overflow-y: scroll;
         }
@@ -59,14 +61,34 @@
         .jugar_jornada{ padding: 12px 0; }
 
         .candado{ float: left; font-size: 20px; color: #FFF; }
-
+        .puntaje_jornada {
+            font-family: 'Poppins';
+            color: #ffffff;
+            background: #9d0b0b;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: bolder;
+            line-height: 1.8em;
+            margin-top: 5px;
+        }
+        .colptj{ padding: 0; }
         .loginuser{    
             margin: 0;  
             color: #9d0b0b; 
             font-size: 30px;
             font-family: 'LemonJuice';
         }
+        .logout{
+            margin: 0;  
+            color: #9d0b0b; 
+            font-size: 20px;
+            font-family: 'LemonJuice';
+        }
         .bnvlog_user{ color: #000; font-family: 'Poppins'; font-size: 16px; margin: 0; }
+        #opciones_inicio{
+            padding: 12px 4px;
+        }
     </style>
 </head>
 
@@ -86,6 +108,7 @@
                             <p class="loginuser"><?php echo $_SESSION["user"]["nombre"] ?></p>
                         </div>
                         <div style="clear: both;"></div>
+                        
                         <?php include( "secciones/jornadas.php" ) ?>
                         
                     </div>
@@ -93,16 +116,21 @@
                         <div class="faq_tab">
                             
                             <img src="img/logo-bimbotinto.png" width="100%" align="center" class="btinto_logo_inicio">
-                            <img src="img/bimbotinto_jornada.png" width="100%" align="center">
-                            <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
+                            <img id="imginicio" src="img/bimbotinto_jornada.png" width="100%" align="center">
+                            <ul id="opciones_inicio" class="nav nav-tabs text-center">
                                 <li class="nav-item">
-                                    <a href="#" class="jbtn btn_hover agency_banner_btn pay_btn pay_btn_two cus_mb-10">Premios</a>
+                                    <a href="premios_bimbotinto.html" class="jbtn btn_hover cus_mb-10">Premios</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="puntuaciones.php" class="jbtn btn_hover agency_banner_btn pay_btn pay_btn_two cus_mb-10">Puntuaciones</a>
+                                    <a href="puntuaciones.php" class="jbtn btn_hover cus_mb-10">Puntuaciones</a>
                                 </li>
                             </ul>
-                            <p class="text-center"> A medida que la vintotinto vaya avanzando, se desbloquearán los juegos y podrás hacer tu pronóstico</p>
+                            <p class="text-center"> A medida que la Vintotinto vaya avanzando, se desbloquearán los juegos y podrás hacer tu pronóstico</p>
+                            <div align="right">
+                                <a href="inicio.php?logout" class="align_right logout">
+                                    <i class="ti-close"></i> Cerrar Sesión
+                                </a>
+                            </div>
                         </div>
                     </div>
                     
@@ -124,8 +152,13 @@
     <script src="vendors/isotope/isotope-min.js"></script>
     <script src="vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
     <script src="vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script src="js/fn-transiciones.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+    <script type="text/javascript">
+        imagenPaso( "#imginicio", "escalfade" );
+    </script>
 </body>
 
 </html>

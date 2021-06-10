@@ -1,17 +1,19 @@
 <?php 
     foreach ( $jornadas as $j ) { 
         
-        $predicc_iniciada = prediccionJornadaActualIniciada( $dbh, $j["idj"], $idp );
-
-        $icon           = "ti-unlock";      // icono candado abierto
-        $btn_class      = "jbtn";           // botón rojo
+        $predicc_iniciada   = prediccionJornadaIniciada( $dbh, $j["idj"], $idp );
+        $puntaje            = obtenerPuntuacionJornadaParticipante( $dbh, $idp, $j["idj"] );
+        $puntosj            = $puntaje["puntos"] == NULL ? 0 : $puntaje["puntos"];
+        
+        $icon               = "ti-unlock";      // icono candado abierto
+        $btn_class          = "jbtn";           // botón rojo
 
         if( $predicc_iniciada ){
-            $jlink      = "jornada.php?j=$j[idj]";
-            $txboton    = "Ver mi predicción";
+            $jlink          = "jornada.php?j=$j[idj]";
+            $txboton        = "Ver mi predicción";
         }else{
-            $txboton    = "Jugar jornada";
-            $jlink      = "alineacion.php";
+            $txboton        = "Jugar jornada";
+            $jlink          = "alineacion.php";
         }
         
         if( $j["cerrado"] == 1 ){
@@ -20,7 +22,8 @@
             if( $predicc_iniciada ){
                 $txboton    = "Ver mi predicción";
             }else{
-                $btn_class  = "jbtn_l";
+                $btn_class  = "jbtn_l";     // botón gris
+                $jlink      = "#!";
             }
         }
 ?>
@@ -37,8 +40,11 @@
             <div class="col-5">
                 <div class="equipo"><img src="<?php echo $j['bandera1']?>"></div>
             </div>
-            <div class="col-2" align="center">
+            <div class="col-2 colptj" align="center">
                 <span class="jvs">Vs</span>
+                <div class="puntaje_jornada">
+                    <?php echo $puntosj ?> pts.
+                </div>
             </div>
             <div class="col-5">
                 <div class="equipo"><img src="<?php echo $j['bandera2']?>"></div>

@@ -26,13 +26,17 @@
         </div>
         <div class="row data_jornada">
             <div class="col-5">
-                <div class="equipo"><img src="<?php echo $jornada['bandera1']?>" class="banderas_jornada"></div>
+                <div class="equipo" align="center">
+                    <img src="<?php echo $jornada['bandera1']?>" class="banderas_jornada">
+                </div>
             </div>
             <div class="col-2" align="center">
                 <span class="jvs">Vs</span>
             </div>
             <div class="col-5">
-                <div class="equipo"><img src="<?php echo $jornada['bandera2']?>" class="banderas_jornada"></div>
+                <div class="equipo" align="center">
+                    <img src="<?php echo $jornada['bandera2']?>" class="banderas_jornada">
+                </div>
             </div>
         </div>
         

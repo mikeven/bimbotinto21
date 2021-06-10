@@ -20,7 +20,7 @@
         </div>
     </div>
     
-    <div id="tab_filter" class="listing_tab tabposiciones_jugadores">
+    <div id="tab_filter" class="tabposiciones_jugadores" data-delclass="listing_tab">
         
         <!-- Porteros -->
         <div class="row fila_jugadores">

@@ -31,36 +31,69 @@ function registrarUsuario(){
     });
 }
 /* ----------------------------------------------------------------------------------- */
-function reestablecerPassword(){
+function enviarPassword( frm ){
     //Envía al servidor la petición para reestablecer contraseña de usuario
 
-    var form_paswrecovery = $("#frm_resetpassword").serialize();
-    //var loader_gif = "<img src='assets/images/ajax-loader.gif'>";
-    
+    var form_paswrecovery = $( frm ).serialize();
+    //var loader_gif = "<img src='img/ajax-loader.gif'>";
+    console.log(form_paswrecovery);
     $.ajax({
         type:"POST",
         url:"db/data-user.php",
-        data:{ new_passw: form_paswrecovery },
+        data:{ env_passw: form_paswrecovery },
         beforeSend: function(){
-            //$("#reg-resp").html( loader_gif );
-            $("#reg-resp").removeClass( "frm_success" ).removeClass( "frm_error" );
+            $("#reg-resp").html("");
+            $("#log-resp").removeClass( "frm_success" ).removeClass( "frm_error" );
         },
         success: function( response ){
+            
             console.log( response );
-            $("#reg-resp").html("");
+            
             res = jQuery.parseJSON( response );
             if( res.exito == 1 ){
-                $("#reg-resp").addClass( "frm_success" );
-                $("#reg-resp").html( res.mje );
+                $("#log-resp").addClass( "frm_success" );
+                $("#log-resp").html( res.mje );
+                $("#log-resp").fadeIn();
+                $( frm ).get(0).reset();
             } else {
-                $("#reg-resp").addClass( "frm_error" );
-                $("#reg-resp").html( res.mje );
+                $("#log-resp").addClass( "frm_error" );
+                $("#log-resp").html( res.mje );
+                $("#log-resp").fadeIn();
             }  
+
+            $("#reg-resp").html("");
         }
     });
 }
 
 /* ----------------------------------------------------------------------------------- */
+/*function log_in(){
+    //Invoca al servidor para iniciar sesión de usuario
+    var form = $('#frm_login');
+    $.ajax({
+        type:"POST",
+        url:"db/data-user.php",
+        data:form.serialize(), //data invocación: usr_login (index.php)
+        beforeSend: function(){
+            //$("#reg-resp").html( loader_gif );
+            $("#log-resp").hide();
+            $("#log-resp").removeClass( "frm_success" ).removeClass( "frm_error" );
+        },
+        success: function( response ){
+            console.log( response );
+            res = jQuery.parseJSON( response );
+            if( res.exito == 1 ){
+                window.location = "inicio.php";
+            } else {
+
+                $("#log-resp").addClass( "frm_error" );
+                $("#log-resp").html( res.mje );
+                $("#log-resp").fadeIn();
+            } 
+        }
+    });
+}*/
+
 function log_in(){
     //Invoca al servidor para iniciar sesión de usuario
     var form = $('#frm_login');
@@ -89,28 +122,6 @@ function log_in(){
 }
 /* ----------------------------------------------------------------------------------- */
 
-function enviarDatosContacto( datos ){
-    //Envía al servidor los datos del formulario de contacto
-    var form_co = $(datos).serialize();
-    
-    $.ajax({
-        type:"POST",
-        url:"database/data-user.php",
-        data:{ form_ctc: form_co },
-        success: function( response ){
-            
-            res = jQuery.parseJSON( response );
-            scroll_To();
-            mensajeAlerta( "#alert-msgs", res.mje );
-            $("#frm_contacto")[0].reset();
-            if( res.exito != 1 ){
-                $("#frm_contacto")[0].reset();
-                activarBoton( "#btn_contacto", true );  
-            }
-        }
-    });
-}
-
 // ================================================================================== //
 jQuery.fn.exists = function(){ return ($(this).length > 0); }
 // ================================================================================== //
@@ -124,6 +135,8 @@ $( document ).ready(function() {
 
     $("#enl_frmregistro").on( "click", function(){
         $(".form_ingreso").fadeOut();
+        $("#form_password").fadeOut();
+        $("#log-resp").fadeOut();
         $(".form_registro").fadeIn();
     });
 
@@ -254,48 +267,6 @@ $( document ).ready(function() {
         });
     }
     /* ......................................................................*/
-
-    if ( $('#frm_resetpassword').exists() ) {
-        
-        $('#frm_resetpassword').bootstrapValidator({
-            
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                password: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Debe indicar contraseña'
-                        }
-                    }
-                },
-                cnf_password: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Debe indicar contraseña'
-                        },
-                        identical: {
-                            field: 'password',
-                            message: 'Las contraseñas deben coincidir'
-                        },
-                    }
-                }
-            }
-        });
-
-        $('#frm_resetpassword').bootstrapValidator().on('submit', function (e) {
-          if (e.isDefaultPrevented()) {
-           
-          } else {
-            reestablecerPassword();
-            return false;
-          }
-        });
-    }
-    /* ......................................................................*/
     if ( $('#frm_contacto').exists() ) {
         
         $('#frm_contacto').bootstrapValidator({
@@ -343,43 +314,37 @@ $( document ).ready(function() {
         });
     }
     /* ......................................................................*/
-    /*
-    $('#frm_login_bar').bootstrapValidator({
+    if ( $('#frm_password').exists() ) {
         
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: 'Debe indicar un email'
-                    },
-                    emailAddress: {
-                        message: 'Debe indicar un email válido'
-                    }
-                }
+        $('#frm_password').bootstrapValidator({
+            
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
             },
-            password: {
-                validators: {
-                    notEmpty: {
-                        message: 'Debe indicar contraseña'
+            fields: {
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Debe indicar un email'
+                        },
+                        emailAddress: {
+                            message: 'Debe indicar un email válido'
+                        }
                     }
                 }
             }
-        }
-    });
+        });
 
-    $('#frm_login_bar').bootstrapValidator().on('submit', function (e) {
-      if (e.isDefaultPrevented()) {
-        alert("prevent");  
-      } else {
-        iniciarSesion( $("#frm_login_bar") );
-        return false;
-      }
-    });
-    */
+        $('#frm_password').bootstrapValidator().on('submit', function (e) {
+            if ( e.isDefaultPrevented() ) {
+        
+            } else {
+                enviarPassword( $("#frm_password") );
+                return false;
+            }
+        });
+    }
 
 });

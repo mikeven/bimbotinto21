@@ -12,8 +12,8 @@
 
     checkSession( "" );
 
-    $prediccion = obtenerPrediccionJornada( $dbh );
-    $jugadores = obtenerJugadores();
+    $prediccion     = obtenerPrediccionJornada( $dbh );
+    $jugadores      = obtenerJugadores();
     
 ?>
 <!doctype html>
@@ -44,8 +44,6 @@
 
         .esquema_aln{ display: none; }
 
-        
-
         .posicionalieacion{
             padding: 8px 0;
         }
@@ -68,14 +66,25 @@
             border-radius: 12px
         }
 
-        .fila_jugadores .item:hover{
-            color: #fff; 
-            background: #be1616; 
+        @media (hover: hover) {
+          .fila_jugadores .item:hover{
+                color: #fff; 
+                background: #be1616; 
+            }
         }
-
+        @media (hover: none) {
+          .fila_jugadores .item:active{
+                color: #fff; 
+                background: #be1616; 
+            }
+        }
+        
         .fila_jugadores .item_s{
             color: #fff;
             background: #be1616; 
+            -webkit-transition: all 0.3s linear;
+            -o-transition: all 0.3s linear;
+            transition: all 0.3s linear;
         }
  
         #tab_filter{ display: none; }
@@ -254,23 +263,25 @@
         <section id="fondo_actividad" class="software_promo_area bg_color sec_pad" style="min-height: 100vh">
             <div class="container">
                 <div align="center" style="padding-bottom: 25px;">
-                    <img src="img/logo-bimbotinto.png" width="200">
+                    <a href="inicio.php"><img src="img/logo-bimbotinto.png" width="200"></a>
                 </div>
                 <div class="row">
                     
                     <div class="col-lg-5" style="padding-left: 2%">
                         <div id="panel_jugadores" class="faq_tab">
                             <h4 class="tit4 text-center">Alineación Inicial</h4>
-                            <img src="img/bimbotino_alineacion.png" width="50%" align="left">
+                            <img id="imgalineacion" src="img/bimbotino_alineacion.png" width="50%" align="left">
                             <p> ¿ Crees saber cuál será la formación de la Vinotinto para este próximo juego ?</p>
                             <p class="sepmob"> Arma tu alineación, por cada jugador acertado obtendrás <span class="btpts">+5 puntos</span></p>
                             <?php include ( "secciones/jugadores.php" )?>
+                            
                             <div align="center" class="btn_siguiente_paso">
-                                <a href="#!" class="azbtn btn_hover cus_mb-10 btn_siguiente paso_alineacion" 
-                                data-paso="1" onclick="ircaja()">
+                                <a href="#!" class="azbtn btn_hover cus_mb-10 btn_siguiente paso_alineacion" data-paso="1">
                                     Siguiente <i class="ti-arrow-right"></i>
                                 </a>
                             </div>
+
+                            <div id="reg-resp"> </div>
                         </div>
 
                     </div>
@@ -309,6 +320,7 @@
             $('#tab_filter').fadeIn();
         });
         $(".esquema_aln").fadeIn( 1200 );
+        imagenPaso( "#imgalineacion", "y-mov" );
     </script>
     <?php if( $prediccion ) { ?>
         <script type="text/javascript">
