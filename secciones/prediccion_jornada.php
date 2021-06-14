@@ -9,6 +9,7 @@
                 </div>
             <?php } ?>
         </div>
+        <b><?php echo $prediccion["puntos_alineacion"]?> pts </b>
     </div>
     <div class="col-lg-6 col-sm-12">
         <div id="prediccion_primer_gol" class="bloque_prediccion">
@@ -18,6 +19,7 @@
                 <img src="img/player.png" alt="" class="imgjugador">
                 <div class="nombre_jugador"><?php echo $prediccion["primergol"]?></div>
             </div>
+            <b><?php echo $prediccion["puntos_primergol"]?> pts </b>
         </div>
         <div id="prediccion_ganador" class="bloque_prediccion">
             <h4 class="tit4">Ganador del encuentro</h4>
@@ -25,6 +27,7 @@
                 <img src="<?php echo $prediccion['bandera']?>" alt="" class="imgbandera">
                 <div class="nombre_jugador"><?php echo $prediccion["ganador"]?></div>
             </div>
+            <b><?php echo $prediccion["puntos_ganador"]?> pts </b>
         </div>
     </div>
 </div>

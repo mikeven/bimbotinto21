@@ -38,7 +38,7 @@
         </div>
         <div class="row data_jornada">
             <div class="col-5">
-                <div class="equipo"><img src="<?php echo $j['bandera1']?>"></div>
+                <div class="equipo"><img src="<?php echo $j['bandera1']?>" class="b<?php echo $icon ?>"></div>
             </div>
             <div class="col-2 colptj" align="center">
                 <span class="jvs">Vs</span>
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="col-5">
-                <div class="equipo"><img src="<?php echo $j['bandera2']?>"></div>
+                <div class="equipo"><img src="<?php echo $j['bandera2']?>" class="b<?php echo $icon ?>"></div>
             </div>
         </div>
         <div class="row jugar_jornada">

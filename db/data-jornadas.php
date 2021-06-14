@@ -109,7 +109,8 @@
 	function obtenerPuntuaciones( $dbh, $idj ){
 		// Devuelve los registros de participantes y sus puntuaciones por jornada
 		$q = "select concat_ws(' ', p.nombre, p.apellido) as participante,
-				pre.puntos_alineacion + pre.puntos_primergol + pre.puntos_ganador as total 
+				pre.puntos_alineacion + pre.puntos_primergol + pre.puntos_ganador as total, 
+				pre.puntos_alineacion as ptsp1, pre.puntos_primergol as ptsp2, pre.puntos_ganador as ptsp3  
 				from prediccion pre, participante p where pre.idparticipante=p.id and pre.jornada = $idj 
 				group by p.id order by total DESC";
 		

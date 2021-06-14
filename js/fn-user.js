@@ -67,33 +67,29 @@ function enviarPassword( frm ){
 }
 
 /* ----------------------------------------------------------------------------------- */
-/*function log_in(){
-    //Invoca al servidor para iniciar sesión de usuario
-    var form = $('#frm_login');
-    $.ajax({
-        type:"POST",
-        url:"db/data-user.php",
-        data:form.serialize(), //data invocación: usr_login (index.php)
-        beforeSend: function(){
-            //$("#reg-resp").html( loader_gif );
-            $("#log-resp").hide();
-            $("#log-resp").removeClass( "frm_success" ).removeClass( "frm_error" );
-        },
-        success: function( response ){
-            console.log( response );
-            res = jQuery.parseJSON( response );
-            if( res.exito == 1 ){
-                window.location = "inicio.php";
-            } else {
+function enviarFactura( frm ){
+    //Invoca al servidor para enviar una factura de participante
+    var fdata = new FormData( document.getElementById( "frm_factura" ) );
 
-                $("#log-resp").addClass( "frm_error" );
-                $("#log-resp").html( res.mje );
-                $("#log-resp").fadeIn();
-            } 
+    console.log("CLI");
+    $.ajax({
+        type: 'POST',
+        url: 'db/data-user.php',
+        data: { frmfac: fdata },
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData:false,
+        beforeSend: function(){
+            /*$('.envfac').attr( "disabled", "disabled" );*/
+            $('#frm_factura').css("opacity",".5");
+        },
+        success: function( response ){ 
+            console.log(response);
         }
     });
-}*/
-
+}
+/* ----------------------------------------------------------------------------------- */
 function log_in(){
     //Invoca al servidor para iniciar sesión de usuario
     var form = $('#frm_login');
@@ -144,15 +140,11 @@ $( document ).ready(function() {
         iniciarSesion( $("#frm_login_bar"), "min" );
     });
     /* ......................................................................*/
-    
-
-    //Formulario Registro de usuarios: Mostrar campo nombre empresa si tipo de cliente es empresa
-    $("#t-cliente-r").on( "change", function(){
-        if( $(this).val() != "Particular" ){
-            $("#r-nempresa").fadeIn(120);
-        }else{
-            $("#r-nempresa").fadeOut(120);
-        }
+    $('#enl_frmfactura').on('click', function(){
+        $("#formulario_factura").show( 900 );
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $("#info_factura").offset().top
+        }, 900);
     });
     /* ......................................................................*/
     if ( $('#frm_register').exists() ) {
@@ -267,9 +259,9 @@ $( document ).ready(function() {
         });
     }
     /* ......................................................................*/
-    if ( $('#frm_contacto').exists() ) {
+    if ( $('#frm_factura').exists() ) {
         
-        $('#frm_contacto').bootstrapValidator({
+        $('#frm_factura').bootstrapValidator({
             
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -277,40 +269,22 @@ $( document ).ready(function() {
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                nombre: {
+                archivo_factura: {
                     validators: {
                         notEmpty: {
-                            message: 'Debe indicar su nombre'
-                        }
-                    }
-                },
-                email: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Debe indicar un email'
-                        },
-                        emailAddress: {
-                            message: 'Debe indicar un email válido'
-                        }
-                    }
-                },
-                mensaje: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Debe escribir mensaje'
+                            message: 'Debes indicar un archivo'
                         }
                     }
                 }
             }
         });
 
-        $('#frm_contacto').bootstrapValidator().on('submit', function (e) {
-            if (e.isDefaultPrevented()) {
+        $('#frm_factura').bootstrapValidator().on('submit', function (e) {
+            /*if (e.isDefaultPrevented()) {
             
             } else {
-                enviarDatosContacto( $(this) );
-                return false;
-            }
+                
+            }*/
         });
     }
     /* ......................................................................*/
@@ -346,5 +320,18 @@ $( document ).ready(function() {
             }
         });
     }
+    /* ......................................................................*/
+    /*$('#frm_factura').ajaxForm({ 
+        // Invocación asíncrona para enviar segundo sustento sobre una nominación
+        // dato de invocacion: "seg_sustento"
 
+        type: "POST",
+        url: 'db/data-user.php',
+        beforeSubmit : function(){
+            console.log("BFORE");
+        },
+        success:    function(response) { 
+            console.log(response);
+        }
+    });*/
 });

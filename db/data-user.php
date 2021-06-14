@@ -31,11 +31,10 @@
 	function obtenerUsuarioSesion( $dbh ){
 		//Devuelve los datos del usuario con sesión iniciada
 		
-		$idu = $_SESSION["user"]["id"];
-		$q = "select * from clients where id = $idu";
+		$idp = $_SESSION["user"]["id"];
+		$q = "select * from participante where id = $idp";
 
-		$data_user = mysqli_fetch_array( mysqli_query( $dbh, $q ) );
-		return $data_user;					
+		return mysqli_fetch_array( mysqli_query( $dbh, $q ) );					
 	}
 	/* ----------------------------------------------------------------------------------- */
 	function obtenerUsuarioPorId( $dbh, $idu ){
@@ -89,6 +88,14 @@
 		return mysqli_insert_id( $dbh );	
 	}
 	/* ----------------------------------------------------------------------------------- */
+	function guardarFacturaParticipante( $dbh, $idp, $factura ){
+		// Registra el nombre del archivo de una factura asociado a un participante
+		$q = "update participante set factura = '$factura', fecha_factura = NOW() where id = $idp";
+		
+		mysqli_query ( $dbh, $q );
+		return mysqli_affected_rows( $dbh );
+	}
+	/* ----------------------------------------------------------------------------------- */
 	function usuarioYaRegistrado( $dbh, $email ){
 		//Determina si ya existe un usuario registrado dado su email
 		$existe = false;
@@ -130,6 +137,42 @@
 		return mail( $e_mail, $asunto, $mensaje, $cabeceras );
 	}
 	/* ----------------------------------------------------------------------------------- */
+	function cargarArchivoFactura( $archivo ){
+		// Carga el archivo de la factura en la ubicación destino
+
+		$uploadDir 					= 'facturas/'; 
+		$uploadStatus 				= 0; 
+		$respuesta['mje']			= "NADA";
+		$uploadedFile 				= ''; 
+
+		if( !empty( $archivo["name"] ) ){
+
+            $uploadStatus 			= 1; 
+      		// Info de carga 
+            $fileName 				= basename( $archivo["name"] ); 
+            $targetFilePath 		= $uploadDir.$fileName; 
+            $fileType 				= pathinfo( $targetFilePath, PATHINFO_EXTENSION ); 
+             
+            // Tipos de formato
+            $allowTypes 			= array( 'pdf', 'jpg', 'png', 'jpeg' ); 
+            if( in_array( $fileType, $allowTypes ) ){ 
+                // Carga del archivo al servidor
+                if( move_uploaded_file( $archivo["tmp_name"], $targetFilePath ) ){ 
+                    $uploadedFile 	= $fileName; 
+                }else{ 
+                    $uploadStatus 	= -1; 
+                    $respuesta['mje'] 	= 'Error al cargar factura';
+                } 
+            }else{ 
+                $uploadStatus 		= -2; 
+                $respuesta['mje'] 	= 'Formatos válidos: PDF, JPG, JPEG y PNG'; 
+            } 
+        } 
+
+        $respuesta['estatus'] 		= $uploadStatus;
+        
+        return $respuesta;
+	}
 	/* ----------------------------------------------------------------------------------- */
 	/* Solicitudes asíncronas al servidor para procesar información de usuarios */
 	/* ----------------------------------------------------------------------------------- */
@@ -215,6 +258,24 @@
 		}
 		
 		echo json_encode( $res );	
+	}
+
+	/* ----------------------------------------------------------------------------------- */
+	
+	//Envío de factura
+	if( isset( $_POST["factura_participante"] ) ){
+		
+		include( "db.php" );
+		$idp 	= $_POST["factura_participante"];
+		$carga 	= cargarArchivoFactura( $_FILES["archivo_factura"] );		
+
+		$exito 	= $carga["estatus"];
+		if( $carga["estatus"] == 1 ){
+			$res = guardarFacturaParticipante( $dbh, $idp, $_FILES["archivo_factura"]["name"] );
+		}
+		$url = "../factura.php?exito=$exito";
+
+		echo "<script>window.location = '".$url."'</script>";
 	}
 	
 	/* ----------------------------------------------------------------------------------- */

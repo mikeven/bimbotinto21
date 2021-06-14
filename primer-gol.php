@@ -50,6 +50,15 @@
         .fila_jugadores { padding-top: 20px; padding-bottom: 12px; padding-right: 3%; padding-left: 3%; }
         
     </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EFGSZZVCN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4EFGSZZVCN');
+    </script>
 </head>
 
 <body>

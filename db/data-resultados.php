@@ -8,20 +8,20 @@
 	// Jornada 1: Venezuela - Brasil | 13 junio *
 
 	$resultados_jornada[1] = array(
-		"jugadores" 	=> 	array( "Baroja", 			// Portero
+		"jugadores" 	=> 	array( "Graterol", 			// Portero
 								/*MC*/
-								"Herrera", 			
-								"Otero", 
-								"Moreno", 
-								"Vargas",
+								"Moreno", 			
+								"Manzano", 
+								"Martínez", 
+								"Cásseres",
 								/*DEF*/
-								"Rosales", 
-								"Hernández", 
-								"Osorio", 
-								"González",
+								"Mago", 
+								"González", 
+								"Cumana", 
+								"Martínez",
 								/*DEL*/
 								"Aristiguieta",
-								"Rondón"
+								"La Mantía"
 							),
 		"primergol"		=>	"Ninguno",
 		"idganador"		=>	3, 	

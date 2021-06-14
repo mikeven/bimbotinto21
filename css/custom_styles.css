@@ -103,9 +103,16 @@ span.btpts {
     border-radius: 15px;
     color: #fff;
     font-weight: bolder;
+    padding: 1px 3px;
 }
 
 .tit1{
+  color: #707070;
+  font-size: 84px;
+  font-family: 'Lemonjuice';
+}
+
+.tit2{
   color: #707070;
   font-size: 84px;
   font-family: 'Lemonjuice';

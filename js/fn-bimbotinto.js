@@ -151,7 +151,17 @@ function guardarPrediccion( p, idvalor ){
     });
 }
 /* ----------------------------------------------------------------------------------- */
-$( document ).ready(function() {	
+$( document ).ready(function() {
+
+    $("#enl_premios").on( "click", function(){
+        $("#reglas_bimbotinto").fadeOut();
+        $("#premio_bimbotinto").fadeIn();
+    });	
+
+    $("#enl_reglas").on( "click", function(){
+        $("#reglas_bimbotinto").fadeIn();
+        $("#premio_bimbotinto").fadeOut();
+    }); 
     
 	/* Selección de jugadores en la alineación */
     $('.jgseleccion').on('click', function(){
@@ -223,5 +233,6 @@ $( document ).ready(function() {
             guardarPrediccion( "ganador", "#ganador" );
         }
     });
+
 });
 /* ----------------------------------------------------------------------------------- */

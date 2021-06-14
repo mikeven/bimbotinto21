@@ -9,7 +9,7 @@
     include( "db/data-user.php" );
     include( "db/data-jornadas.php" );
 
-    checkSession( "" );
+    //checkSession( "" );
     $jornadas       = obtenerJornadas( $dbh );
 ?>
 <!doctype html>
@@ -20,7 +20,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <title>Bimbo Tinto</title>
+    <title>Puntuaciones::Bimbo Tinto</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!--icon font css-->
@@ -78,6 +78,15 @@
             background: rgba(0,0,0,0.1);
         }
     </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EFGSZZVCN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4EFGSZZVCN');
+    </script>
 </head>
 
 <body>
@@ -102,7 +111,7 @@
                                     <a href="inicio.php" class="jbtn btn_hover cus_mb-10">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="premios_bimbotinto.html" class="jbtn btn_hover cus_mb-10">Premios</a>
+                                    <a href="premios.php?premios" class="jbtn btn_hover cus_mb-10">Premios</a>
                                 </li>
                             </ul>
                         </div>
@@ -135,6 +144,14 @@
     <script type="text/javascript">
         imagenPaso( "#imgpremio", "y-mov" );
         animarPremio();
+        $("span[title]").click(function () {
+          var $title = $(this).find(".title");
+          if (!$title.length) {
+            $(this).append('<span class="title">' + $(this).attr("title") + '</span>');
+          } else {
+            $title.remove();
+          }
+        });​
     </script>
 </body>
 

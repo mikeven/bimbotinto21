@@ -1,6 +1,7 @@
 <div id="bimbotinto-paso-2">
     <!-- Paso 2: Primer Gol -->
-    <p align="center"> Selecciona <b>Ninguno</b> si crees que el equipo contrario anotará el primer gol</p>
+    <p align="center"> 
+        Selecciona <b>Ninguno</b> si crees que el equipo contrario anotará el primer gol o si el partido queda empatado a 0</p>
     <div class="row fila_jugadores">
         <?php for ( $j = 0; $j < 11; $j++ ) { ?>
             <div class="col-6" align="center">

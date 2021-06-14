@@ -2,8 +2,12 @@
     <div class="tab-pane fade show active" id="purchas" role="tabpanel" aria-labelledby="purchas-tab">
         <div id="accordion">
         	<?php 
-        		$xpnd = "true"; $show = "show"; $cllp = "";
+        		$nj = 1; $mostrarjornada = 1;
         		foreach ( $jornadas as $jr ) { 
+        			$xpn = "false"; $show = ""; $cllp = "collapsed";
+	        		if( $nj == $mostrarjornada ){
+	        			$xpnd = "true"; $show = "show"; $cllp = "";
+	        		}
         			$puntuaciones = obtenerPuntuaciones( $dbh, $jr["idj"] );
         	?>
             <div class="card">
@@ -36,7 +40,8 @@
 										<td align="center"><?php echo $p ?></td>
 										<td><?php echo $reg["participante"] ?></td>
 										<td align="center"><?php echo $reg["total"] ?></td>
-										<td align="center"><i class="ti-layout-media-right-alt"></td>
+										<td align="center"><i class="ti-layout-media-right-alt" 
+											title="Alineación: <?php echo $reg['ptsp1'] ?> - Primer Gol: <?php echo $reg['ptsp2'] ?> - Ganador: <?php echo $reg['ptsp3'] ?>"></td>
 									</tr>
 								<?php $p++; } ?>
 							</tbody>
@@ -44,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <?php $xpn = "false"; $show = ""; $cllp = "collapsed";} ?>
+            <?php $nj++; } ?>
         </div>
         
     </div>

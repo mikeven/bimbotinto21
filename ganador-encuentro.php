@@ -61,6 +61,15 @@
 
         .fila_jugadores, .jugador_alineado { padding-top: 20px; padding-bottom: 12px; }
     </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EFGSZZVCN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4EFGSZZVCN');
+    </script>
 </head>
 
 <body>
@@ -78,7 +87,7 @@
                             <hr>
                             <p align="center">¿Quién ganará el encuentro?</p>
                             <p align="center">La respusta correcta obtiene</p>
-                            <p align="center"> <span class="btpts">+60 puntos</span> </p>
+                            <p align="center"> <span class="btpts">+30 puntos</span> </p>
                             
                         </div>
                     </div>
