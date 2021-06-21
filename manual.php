@@ -111,7 +111,8 @@
             $ptos_p3    = puntajePorPaso( $reg, $resultados, "idganador", 30 );
             //$ptos_p2 = $ptos_p3 = 0;
 
-            echo $reg["nombrep"]." ".$reg["apellidop"]." ".$ptos_p1." ".$ptos_p2." ".$ptos_p3."<br>"; 
+            $pt = $ptos_p1+$ptos_p2+$ptos_p3;
+            echo $reg["nombrep"]." ".$reg["apellidop"]." ".$ptos_p1." ".$ptos_p2." ".$ptos_p3." ".$pt."<br>"; 
             guardarPuntuacion( $dbh, $ptos_p1, $ptos_p2, $ptos_p3, $reg["idprediccion"], $IDJ );
         }
     }

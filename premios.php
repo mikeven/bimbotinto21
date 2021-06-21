@@ -203,7 +203,7 @@
                                 <div class="texto_reglas">
                                     <ul>
                                         <li>Dom 13/06: Venezuela - Brasil</li>
-                                        <li>Dom 17/06: Venezuela - Colombia</li>
+                                        <li>Jue 17/06: Venezuela - Colombia</li>
                                         <li>Dom 20/06: Venezuela - Ecuador</li>
                                         <li>Dom 27/06: Venezuela - Perú</li>
                                     </ul>

@@ -12,6 +12,7 @@
 			array("n" => "Alain", 		"a" => "Baroja"),
 			array("n" => "José", 		"a" => "Contreras"),
 			array("n" => "Joel", 		"a" => "Graterol"),
+			array("n" => "Luis", 		"a" => "Romero"),
 			array("n" => "Rafael", 		"a" => "Romo") 
 		);
 		
@@ -27,6 +28,9 @@
 			array("n" => "Tomás", 		"a" => "Rincón"),
 			array("n" => "Jefferson", 	"a" => "Savarino"),
 			array("n" => "Yeferson", 	"a" => "Soteldo"),
+			array("n" => "Edson", 		"a" => "Castillo"),
+			array("n" => "Richard", 	"a" => "Celis"),
+			array("n" => "Bernardo", 	"a" => "Manzano"),
 			array("n" => "Freddy", 		"a" => "Vargas")
 		);	
 
@@ -34,14 +38,17 @@
 		$defensas = array( 
 			array("n" => "Wilker", 		"a" => "Ángel"), 
 			array("n" => "Jhon", 		"a" => "Chancellor"),
-			array("n" => "Luis", 		"a" => "Mago"),
+			array("n" => "Luis", 		"a" => "Del Pino"),
 			array("n" => "Rolf", 		"a" => "Feltscher"),
+			array("n" => "Francisco", 	"a" => "La Mantía"),
 			array("n" => "Nahuel", 		"a" => "Ferraresi"),
 			array("n" => "Alexander", 	"a" => "González"),
 			array("n" => "Ronald", 		"a" => "Hernández"),
 			array("n" => "Yordan", 		"a" => "Osorio"),
 			array("n" => "Roberto ", 	"a" => "Rosales"),
-			array("n" => "Mikel", 		"a" => "Villanueva")
+			array("n" => "Mikel", 		"a" => "Villanueva"),
+			array("n" => "Yohan", 		"a" => "Cumana"),
+			array("n" => "Adrián", 		"a" => "Martínez")
 		);	
 
 		/* Delanteros */
@@ -97,6 +104,7 @@
 		$defensas = array( 
 			array("n" => "Wilker", 		"a" => "Ángel"), 
 			array("n" => "Jhon", 		"a" => "Chancellor"),
+			array("n" => "José M.", 	"a" => "Velázquez"),
 			array("n" => "Luis", 		"a" => "Mago"),
 			array("n" => "Rolf", 		"a" => "Feltscher"),
 			array("n" => "Nahuel", 		"a" => "Ferraresi"),

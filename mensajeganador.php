@@ -26,6 +26,9 @@
 	}
 	/* ----------------------------------------------------------------------------------- */
 	function mensajeGanador( $premio, $nombre ){
+		
+		if( $premio == 0 )
+			$plantilla 		= file_get_contents( "fn/mailing/nota_factura.html" );
 		if( $premio == 1 )
 			$plantilla 		= file_get_contents( "fn/mailing/premio_camisa.html" );
 		if( $premio == 2 )
@@ -38,16 +41,44 @@
 	/* ----------------------------------------------------------------------------------- */
 	ini_set( 'display_errors', 1 );
 
-	/*
+	/* =================================================================== JORNADA 1 */
 	//Premio principal
-	$e_mail = "enyerbethjose94@gmail.com"; $nombre = "Enyerbeth Véliz";
+	/*$e_mail = "enyerbethjose94@gmail.com"; $nombre = "Enyerbeth Véliz";
+	$mensaje = mensajeGanador( 1, $nombre );
+	if( enviarMensajeGanador( $e_mail, $mensaje ) )
+		echo "Mensaje enviado a: $nombre - $e_mail"."<br>";
+
+	//Premio sorteo
+	$e_mail = "lejardy.churio@gmail.com"; 			$nombre = "Lejardy Churio";
+	$mensaje = mensajeGanador( 2, $nombre );
+	if( enviarMensajeGanador( $e_mail, $mensaje ) )
+		echo "Mensaje enviado a: $nombre - $e_mail"."<br>";*/
+	
+	// =================================================================== JORNADA 2
+	//Notificación de factura
+	/*$e_mail = "mikeven_17@hotmail.com"; 	$nombre = "Víctor Gómez";	
+	$mensaje = mensajeGanador( 0, $nombre );
+	if( enviarMensajeGanador( $e_mail, $mensaje ) )
+		echo "Mensaje enviado a: $nombre - $e_mail"."<br>";
+	
+	//Premio sorteo
+	$e_mail = "gonzalomora1961@gmail.com"; 			$nombre = "Gonzalo Colmenares";
+	$mensaje = mensajeGanador( 2, $nombre );
+	if( enviarMensajeGanador( $e_mail, $mensaje ) )
+		echo "Mensaje enviado a: $nombre - $e_mail"."<br>";*/
+	
+	// =================================================================== JORNADA 3
+	//Premio principal
+	/*$e_mail = "enyerbethjose94@gmail.com"; 	$nombre = "Enyerbeth Véliz";	
 	$mensaje = mensajeGanador( 1, $nombre );
 	if( enviarMensajeGanador( $e_mail, $mensaje ) )
 		echo "Mensaje enviado a: $nombre - $e_mail"."<br>";
 	
 	//Premio sorteo
-	$e_mail = "lejardy.churio@gmail.com"; $nombre = "Lejardy Churio";
+	$e_mail = "gonzalomora1961@gmail.com"; 			$nombre = "Gonzalo Colmenares";
 	$mensaje = mensajeGanador( 2, $nombre );
 	if( enviarMensajeGanador( $e_mail, $mensaje ) )
 		echo "Mensaje enviado a: $nombre - $e_mail"."<br>";*/
+
+	// =================================================================== JORNADA 4
 ?>

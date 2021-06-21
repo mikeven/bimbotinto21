@@ -10,9 +10,7 @@
     include( "db/data-jugadores.php" );
     include( "db/data-jornadas.php" );
 
-    checkSession( "" );
-    $idp                    = $_SESSION["user"]["id"];
-
+    /* Jornada */
     if( isset( $_GET['j'] ) )
         $idj                = $_GET['j'];
     else{
@@ -20,8 +18,16 @@
         if( $jornada_actual )
             $idj                = $jornada_actual["id"];
         else
-            echo "<script> window.location = 'inicio.php'</script>";
+            echo "J";//"<script> window.location = 'inicio.php'</script>";
     }
+    /*Participante*/
+    if( isset( $_GET['p'] ) ){
+        $idp                = $_GET['p'];
+        $participante       = obtenerUsuarioPorId( $dbh, $idp );
+    }
+    else
+        echo "P";//"<script> window.location = 'inicio.php'</script>";
+
     $jornada                = obtenerJornadaPorId( $dbh, $idj );
     $prediccion             = obtenerPrediccionJornadaUsuario( $dbh, $idp, $idj );
         
@@ -34,7 +40,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <title>Jornada::BimboTinto</title>
+    <title>Predicción <?php echo $idp?>::BimboTinto</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!--icon font css-->
@@ -116,24 +122,20 @@
                         <div class="faq_tab">
                             <img id="resjornada" src="img/bimbotinto_jornada.png" width="100%" align="center">
                             <h4 class="tit4 text-center">Tus predicciones</h4>
-
                             <?php include( "secciones/info_jornada.php" ); ?>
                         </div>
                     </div>
 
                     <div class="col-lg-5 offset-lg-1" style="padding-right: 2%">
+                        <h3><?php echo $participante["nombre"]." ".$participante["apellido"]; ?></h3>
                         <?php include ( "secciones/prediccion_jornada.php" )?>
                         <?php if( "secciones/prediccion_jornada.php" ) { ?>
                             <div align="center" style="margin-top: 100px">
 
-                                <a href="inicio.php" class="azbtn btn_hover cus_mb-10 btn_siguiente paso_ganador opc_jornada">
-                                    Inicio
+                                <a href="puntuaciones.php" class="azbtn btn_hover cus_mb-10 btn_siguiente paso_ganador opc_jornada">
+                                    Volver
                                 </a>
-                                <?php if( $jornada["cerrado"] == "0" ) { ?>
-                                    <a href="alineacion.php" class="azbtn btn_hover cus_mb-10 opc_jornada">
-                                        Modificar
-                                    </a>
-                                <?php } ?>
+                                
                             </div>
                         <?php } ?>
                     </div>

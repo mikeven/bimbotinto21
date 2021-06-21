@@ -66,6 +66,9 @@
             border-bottom-right-radius: 5px;
         }
 
+        .enlprd{ color: #fff; }
+        .enlprd:hover{ color: #fff; }
+
         .faq_content .tab-pane .card .card-header .btn {
             color: #8e0313;
             display: block;

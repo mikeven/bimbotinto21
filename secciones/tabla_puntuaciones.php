@@ -2,7 +2,7 @@
     <div class="tab-pane fade show active" id="purchas" role="tabpanel" aria-labelledby="purchas-tab">
         <div id="accordion">
         	<?php 
-        		$nj = 1; $mostrarjornada = 1;
+        		$nj = 1; $mostrarjornada = 3;
         		foreach ( $jornadas as $jr ) { 
         			$xpn = "false"; $show = ""; $cllp = "collapsed";
 	        		if( $nj == $mostrarjornada ){
@@ -35,13 +35,16 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php $p = 1; foreach ( $puntuaciones as $reg ) { ?>
+								<?php $p = 1; 
+									foreach ( $puntuaciones as $reg ) { 
+										$lnkp = "prediccion.php?j=".$jr["idj"]."&p=".$reg["idp"];
+								?>
 									<tr>
 										<td align="center"><?php echo $p ?></td>
-										<td><?php echo $reg["participante"] ?></td>
+										<td><a href="<?php echo $lnkp ?>" class="enlprd"><?php echo $reg["participante"] ?></a></td>
 										<td align="center"><?php echo $reg["total"] ?></td>
-										<td align="center"><i class="ti-layout-media-right-alt" 
-											title="Alineación: <?php echo $reg['ptsp1'] ?> - Primer Gol: <?php echo $reg['ptsp2'] ?> - Ganador: <?php echo $reg['ptsp3'] ?>"></td>
+										<td align="center"><a href="<?php echo $lnkp ?>" class="enlprd"><i class="ti-layout-media-right-alt" 
+											title="Alineación: <?php echo $reg['ptsp1'] ?> - Primer Gol: <?php echo $reg['ptsp2'] ?> - Ganador: <?php echo $reg['ptsp3'] ?>"></i></td>
 									</tr>
 								<?php $p++; } ?>
 							</tbody>

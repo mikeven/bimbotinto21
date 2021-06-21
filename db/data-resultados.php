@@ -31,46 +31,46 @@
 	// Jornada 2: Venezuela - Colombia | 17 junio *
 
 	$resultados_jornada[2] = array(
-		"jugadores" 	=> 	array( "Graterol", 			// Portero
+		"jugadores" 	=> 	array( "Fariñez", 			// Portero
 								/*MC*/
-								"Rincón", 			
-								"Soteldo", 
-								"Moreno", 
-								"Vargas",
+								"Moreno", 			
+								"Manzano", 
+								"Martínez", 
+								"Cásseres",
 								/*DEF*/
-								"Chancellor", 
-								"Rosales", 
-								"Villanueva", 
-								"Mago",
+								"Mago", 
+								"González", 
+								"Cumana", 
+								"Martínez",
 								/*DEL*/
-								"Hurtado",
-								"Pérez"
+								"Aristiguieta",
+								"La Mantía"
 							),
 		"primergol"		=>	"Ninguno",
-		"idganador"		=>	5	
+		"idganador"		=>	0	
 	);
 
 	/*===========================================================*/
 	// Jornada 3: Venezuela - Ecuador | 20 junio *
 
 	$resultados_jornada[3] = array(
-		"jugadores" 	=> 	array( "Baroja", 			// Portero
+		"jugadores" 	=> 	array( "Fariñez", 			// Portero
 								/*MC*/
-								"Herrera", 			
-								"Otero", 
-								"Moreno", 
-								"Vargas",
+								"Moreno", 			
+								"Castillo", 
+								"Martínez", 
+								"Cásseres",
 								/*DEF*/
-								"Rosales", 
-								"Hernández", 
-								"Osorio", 
-								"González",
+								"Del Pino", 
+								"González", 
+								"Cumana", 
+								"Martínez",
 								/*DEL*/
 								"Aristiguieta",
-								"Rondón"
+								"Velázquez"
 							),
 		"primergol"		=>	"Ninguno",
-		"idganador"		=>	3, 	
+		"idganador"		=>	0	
 	);
 
 	/*===========================================================*/
