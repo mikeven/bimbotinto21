@@ -72,13 +72,25 @@
 	/*$e_mail = "enyerbethjose94@gmail.com"; 	$nombre = "Enyerbeth Véliz";	
 	$mensaje = mensajeGanador( 1, $nombre );
 	if( enviarMensajeGanador( $e_mail, $mensaje ) )
-		echo "Mensaje enviado a: $nombre - $e_mail"."<br>";
+		echo "Mensaje enviado a: $nombre - $e_mail"."<br>";*/
 	
 	//Premio sorteo
-	$e_mail = "gonzalomora1961@gmail.com"; 			$nombre = "Gonzalo Colmenares";
+	/*$e_mail = "alicia_orellana_84@hotmail.com"; 			$nombre = "Carmen Orellana";
 	$mensaje = mensajeGanador( 2, $nombre );
 	if( enviarMensajeGanador( $e_mail, $mensaje ) )
 		echo "Mensaje enviado a: $nombre - $e_mail"."<br>";*/
 
 	// =================================================================== JORNADA 4
+
+	//Notificación de factura
+	$e_mail = "jimmygomez01@gmail.com"; 			$nombre = "Jimmy Gómez";	
+	$mensaje = mensajeGanador( 0, $nombre );
+	if( enviarMensajeGanador( $e_mail, $mensaje ) )
+		echo "Mensaje enviado a: $nombre - $e_mail"."<br>";
+
+	//Premio sorteo
+	$e_mail = "dannymedina1321@gmail.com"; 			$nombre = "Danny Medina";
+	$mensaje = mensajeGanador( 2, $nombre );
+	if( enviarMensajeGanador( $e_mail, $mensaje ) )
+		echo "Mensaje enviado a: $nombre - $e_mail"."<br>";
 ?>

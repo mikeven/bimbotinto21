@@ -2,7 +2,7 @@
     <div class="tab-pane fade show active" id="purchas" role="tabpanel" aria-labelledby="purchas-tab">
         <div id="accordion">
         	<?php 
-        		$nj = 1; $mostrarjornada = 3;
+        		$nj = 1; $mostrarjornada = 4;
         		foreach ( $jornadas as $jr ) { 
         			$xpn = "false"; $show = ""; $cllp = "collapsed";
 	        		if( $nj == $mostrarjornada ){

@@ -77,23 +77,23 @@
 	// Jornada 4: Venezuela - Perú | 27 junio *
 
 	$resultados_jornada[4] = array(
-		"jugadores" 	=> 	array( "Baroja", 			// Portero
+		"jugadores" 	=> 	array( "Fariñez", 			// Portero
 								/*MC*/
-								"Herrera", 			
-								"Otero", 
-								"Moreno", 
-								"Vargas",
+								"Moreno", 			
+								"Savarino", 
+								"Castillo", 
+								"Cásseres",
 								/*DEF*/
 								"Rosales", 
-								"Hernández", 
-								"Osorio", 
-								"González",
+								"Ferraresi", 
+								"Villanueva", 
+								"Del Pino",
 								/*DEL*/
-								"Aristiguieta",
+								"Hernández",
 								"Córdova"
 							),
-		"primergol"		=>	"Osorio",
-		"idganador"		=>	1, 	
+		"primergol"		=>	"Ninguno",
+		"idganador"		=>	4, 	
 	);
 
 	/*===========================================================*/
